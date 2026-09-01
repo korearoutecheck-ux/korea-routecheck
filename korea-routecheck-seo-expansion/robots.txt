@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://korearoutecheck-ux.github.io/korea-routecheck/sitemap.xml

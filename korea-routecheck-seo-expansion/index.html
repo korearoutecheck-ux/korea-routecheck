@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="impact-site-verification" value="12b1fbeb-7c79-48c6-aacc-c4c94c9bf42f">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Korea RouteCheck — Build a Seoul itinerary that actually fits</title>
+  <meta name="description" content="Build a realistic Seoul itinerary by neighborhood, pace, budget, and interests. Reduce backtracking, estimate costs, and plan rain-ready days.">
+  <meta name="theme-color" content="#112f2a">
+  <meta property="og:title" content="Korea RouteCheck">
+  <meta property="og:description" content="A realistic, neighborhood-clustered Seoul itinerary in under a minute.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://korearoutecheck-ux.github.io/korea-routecheck/">
+  <link rel="canonical" href="https://korearoutecheck-ux.github.io/korea-routecheck/">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Korea RouteCheck",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Any",
+    "description": "A free tool that builds realistic Seoul itineraries by neighborhood, pace, budget, and interests.",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Korea RouteCheck home">
+      <span class="brand-mark" aria-hidden="true">路</span>
+      <span>Korea RouteCheck</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#planner">Planner</a>
+      <a href="#guides">Itinerary guides</a>
+      <a href="#method">Why it works</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Route-realistic Seoul planning</p>
+        <h1>See more of Seoul.<br><em>Cross it less.</em></h1>
+        <p class="hero-lede">Build a practical itinerary around neighborhoods, walking load, interests, weather, and budget—not a random list of attractions.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#planner">Build my route</a>
+          <span class="microcopy">Free · No account · Runs in the browser</span>
+        </div>
+      </div>
+      <div class="route-card" aria-label="Example route preview">
+        <div class="route-card-top">
+          <span>Day 2</span>
+          <span class="route-score">96 route score</span>
+        </div>
+        <h2>Old Seoul, without the zigzag</h2>
+        <ol class="mini-route">
+          <li><span>09:30</span> Gyeongbokgung Palace</li>
+          <li><span>12:00</span> Seochon lunch</li>
+          <li><span>14:00</span> Insadong &amp; Ikseon-dong</li>
+          <li><span>18:00</span> Cheonggyecheon walk</li>
+        </ol>
+        <p>One part of the city. Less transit. More actual time there.</p>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Product benefits">
+      <span>Neighborhood clustered</span>
+      <span>Pace checked</span>
+      <span>Budget estimated</span>
+      <span>Rain alternatives</span>
+    </section>
+
+    <section class="guides-section" id="guides">
+      <div class="section-heading">
+        <p class="eyebrow">Start with a proven route</p>
+        <h2>Choose the amount of Seoul that fits.</h2>
+        <p>Each itinerary groups nearby neighborhoods into complete days, then links back to the planner when the route needs to be personalized.</p>
+      </div>
+      <div class="guide-card-grid">
+        <a class="guide-card" href="seoul-2-day-itinerary.html"><span>2 days</span><h3>Seoul essentials</h3><p>Royal Seoul, central markets, Myeongdong and Namsan—with no cross-city detours.</p><strong>See the route →</strong></a>
+        <a class="guide-card" href="seoul-3-day-itinerary.html"><span>3 days</span><h3>First-trip balance</h3><p>Add Hongdae, Yeonnam and Mangwon as one coherent northwest Seoul day.</p><strong>See the route →</strong></a>
+        <a class="guide-card" href="seoul-5-day-itinerary.html"><span>5 days</span><h3>Old and new Seoul</h3><p>Make room for Seongsu, Seoul Forest, Yongsan museums and an Itaewon evening.</p><strong>See the route →</strong></a>
+        <a class="guide-card" href="seoul-7-day-itinerary.html"><span>7 days</span><h3>The complete city week</h3><p>Explore both sides of the river without mixing distant districts into the same day.</p><strong>See the route →</strong></a>
+      </div>
+    </section>
+
+    <section class="planner-section" id="planner">
+      <div class="section-heading">
+        <p class="eyebrow">Free route builder</p>
+        <h2>Tell us how the trip should feel.</h2>
+        <p>The planner prioritizes compatible neighborhoods and limits each day to a realistic amount of travel.</p>
+      </div>
+
+      <form id="trip-form" class="planner-grid">
+        <fieldset>
+          <legend>Trip basics</legend>
+          <label>
+            Days in Seoul
+            <select id="days" name="days">
+              <option value="2">2 days</option>
+              <option value="3" selected>3 days</option>
+              <option value="4">4 days</option>
+              <option value="5">5 days</option>
+              <option value="6">6 days</option>
+              <option value="7">7 days</option>
+            </select>
+          </label>
+          <label>
+            Travelers
+            <input id="travelers" name="travelers" type="number" min="1" max="8" value="2" required>
+          </label>
+          <label>
+            Daily pace
+            <select id="pace" name="pace">
+              <option value="easy">Easy — room to wander</option>
+              <option value="balanced" selected>Balanced — full, not frantic</option>
+              <option value="full">Full — make the day count</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Priorities</legend>
+          <div class="check-grid" id="interest-options">
+            <label><input type="checkbox" name="interest" value="history" checked> History</label>
+            <label><input type="checkbox" name="interest" value="food" checked> Food</label>
+            <label><input type="checkbox" name="interest" value="shopping"> Shopping</label>
+            <label><input type="checkbox" name="interest" value="art"> Art &amp; design</label>
+            <label><input type="checkbox" name="interest" value="nature"> Parks &amp; views</label>
+            <label><input type="checkbox" name="interest" value="nightlife"> Nightlife</label>
+            <label><input type="checkbox" name="interest" value="modern"> Modern Seoul</label>
+          </div>
+          <label class="switch-row">
+            <input id="rain-ready" type="checkbox" checked>
+            <span>Include a rain fallback for each day</span>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Budget estimate</legend>
+          <label>
+            Lodging per night (USD, total room cost)
+            <input id="lodging" name="lodging" type="number" min="0" max="1500" value="120" required>
+          </label>
+          <label>
+            Spending style
+            <select id="spend" name="spend">
+              <option value="budget">Budget-conscious</option>
+              <option value="comfortable" selected>Comfortable</option>
+              <option value="premium">Premium</option>
+            </select>
+          </label>
+          <p class="field-note">Flights are excluded. Estimates are planning guides, not live prices.</p>
+        </fieldset>
+
+        <button class="button button-primary submit-button" type="submit">Build my realistic itinerary</button>
+      </form>
+
+      <section id="results" class="results" hidden aria-live="polite">
+        <div class="results-toolbar">
+          <div>
+            <p class="eyebrow">Your RouteCheck</p>
+            <h2 id="result-title">Your Seoul plan</h2>
+          </div>
+          <div class="toolbar-actions">
+            <button id="copy-plan" class="button button-secondary" type="button">Copy plan</button>
+            <button class="button button-secondary" type="button" onclick="window.print()">Print / save PDF</button>
+          </div>
+        </div>
+
+        <div class="score-grid">
+          <article><span id="route-score">—</span><small>Route score</small></article>
+          <article><span id="daily-load">—</span><small>Daily load</small></article>
+          <article><span id="budget-total">—</span><small>Estimated total</small></article>
+        </div>
+
+        <div id="day-plans" class="day-plans"></div>
+
+        <aside class="booking-panel">
+          <div>
+            <p class="eyebrow">Useful booking shortcuts</p>
+            <h3>Keep the route. Outsource the complicated parts.</h3>
+            <p>These recommendations support Korea RouteCheck at no additional cost when affiliate tracking is active.</p>
+          </div>
+          <div class="booking-links">
+            <a data-affiliate="experiences" href="#">Compare Seoul experiences <span>→</span></a>
+            <a data-affiliate="esim" href="#">Set up a Korea eSIM <span>→</span></a>
+          </div>
+        </aside>
+      </section>
+    </section>
+
+    <section class="method-section" id="method">
+      <div>
+        <p class="eyebrow">The RouteCheck method</p>
+        <h2>Generic planners choose places.<br>We choose days that hold together.</h2>
+      </div>
+      <div class="method-grid">
+        <article><strong>01</strong><h3>Cluster first</h3><p>Stops are grouped into walkable or short-transit areas before attractions are selected.</p></article>
+        <article><strong>02</strong><h3>Cap the load</h3><p>The number and intensity of stops change with the selected travel pace.</p></article>
+        <article><strong>03</strong><h3>Protect the day</h3><p>Weather fallbacks keep a rainy morning from destroying the entire itinerary.</p></article>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <p class="eyebrow">Why Korea RouteCheck exists</p>
+      <blockquote>“A good itinerary is not the longest list of places. It is the right sequence of places.”</blockquote>
+      <p>The planner is built around eight years of on-the-ground experience in Korea and a simple observation: first-time visitors routinely lose hours crossing Seoul for attractions that could have been grouped into coherent neighborhood days.</p>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="section-heading">
+        <p class="eyebrow">Common questions</p>
+        <h2>Before relying on the route</h2>
+      </div>
+      <details><summary>Does this use live opening hours or ticket availability?</summary><p>No. Always verify operating hours, closures, reservations, and admission prices with the venue before traveling.</p></details>
+      <details><summary>Are the budget estimates exact?</summary><p>No. They are planning estimates based on the selected spending style and lodging amount. Flights, shopping, and unusual transport costs are excluded.</p></details>
+      <details><summary>Does the planner store personal information?</summary><p>No. This version runs in the browser and does not submit the trip form to a server.</p></details>
+      <details><summary>How does Korea RouteCheck make money?</summary><p>Some booking links may be affiliate links. The site may receive a commission if a visitor books through them, at no added cost to the traveler.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>Korea RouteCheck</strong><p>Practical Korea itineraries without the needless zigzag.</p></div>
+    <div class="footer-links"><a href="#guides">Itinerary guides</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
+    <p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
