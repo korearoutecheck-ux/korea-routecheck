@@ -5,8 +5,8 @@
 window.ROUTECHECK_CONFIG = {
   affiliateLinks: {
     experiences: {
-      enabled: false,
-      url: "https://www.viator.com/Seoul/d973-ttd"
+      enabled: true,
+      url: "https://www.viator.com/Seoul/d973-ttd?pid=P00317839&mcid=42383&medium=link"
     },
     esim: {
       enabled: false,
