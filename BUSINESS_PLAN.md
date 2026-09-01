@@ -99,11 +99,11 @@ With the operating integrations connected, routine content planning, code change
 
 ### GitHub — required
 
-Purpose: source control, change history, issue tracking, and automatic deployment source.
+Purpose: source control, change history, issue tracking, and free initial hosting through GitHub Pages.
 
-### Cloudflare — required
+### Cloudflare — optional after validation
 
-Purpose: free static hosting, deployment, HTTPS, caching, and privacy-oriented traffic analytics.
+Purpose: optional later migration for deployment controls, caching, and privacy-oriented traffic analytics. It is not required for the initial GitHub Pages launch.
 
 ### Gmail — required for low-touch operation
 

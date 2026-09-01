@@ -199,7 +199,7 @@ function applyAffiliateLinks() {
   });
 }
 
-form.addEventListener("submit", event => {
+if (form) form.addEventListener("submit", event => {
   event.preventDefault();
   const data = {
     days: Number(document.querySelector("#days").value),
@@ -249,5 +249,6 @@ form.addEventListener("submit", event => {
   results.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
-document.querySelector("#year").textContent = new Date().getFullYear();
+const yearElement = document.querySelector("#year");
+if (yearElement) yearElement.textContent = new Date().getFullYear();
 applyAffiliateLinks();
