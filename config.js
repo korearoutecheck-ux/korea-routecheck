@@ -4,9 +4,9 @@
 */
 window.ROUTECHECK_CONFIG = {
   analytics: {
-    enabled: false,
+    enabled: true,
     provider: "ga4",
-    measurementId: ""
+    measurementId: "G-MSXQSYV0QL"
   },
   affiliateLinks: {
     experiences: {
