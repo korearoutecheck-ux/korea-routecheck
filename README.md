@@ -11,6 +11,8 @@ Korea RouteCheck is a zero-API, static travel-planning web application. It build
 - Estimates a trip budget.
 - Copies or prints the itinerary.
 - Includes dedicated, search-optimized 2-, 3-, 5-, and 7-day Seoul guides.
+- Includes six high-intent planning guides for rain, solo travel, arrival day, airport transfers, neighborhoods, and day trips.
+- Includes consent-based GA4 event tracking that remains disabled until a measurement ID is configured.
 - Includes prepared affiliate-link positions.
 - Stores no itinerary data and requires no account.
 
@@ -37,6 +39,10 @@ The app can be opened directly from `index.html`. Its initial production URL is 
 3. Add mobility and dietary filters.
 4. Add a route feedback control using privacy-preserving analytics.
 5. Use affiliate conversion data to prioritize the most helpful recommendations.
+
+## Analytics
+
+See `ANALYTICS_SETUP.md` for GA4 activation and the event/report map. Analytics does not load until a valid measurement ID is supplied and the visitor explicitly allows it.
 
 ## Important operating principle
 

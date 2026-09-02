@@ -190,6 +190,12 @@ function applyAffiliateLinks() {
       link.target = "_blank";
       link.rel = "sponsored noopener";
       link.dataset.disabled = "false";
+      link.addEventListener("click", () => {
+        window.routecheckTrack?.("affiliate_click", {
+          affiliate_partner: key,
+          page_path: window.location.pathname
+        });
+      });
     } else {
       link.href = "#planner";
       link.dataset.disabled = "true";
@@ -217,6 +223,12 @@ if (form) form.addEventListener("submit", event => {
   const averageIntensity = plan.reduce((sum, day) => sum + day.intensity, 0) / plan.length;
   const routeScore = Math.max(86, Math.min(98, Math.round(98 - averageIntensity * 2 + (data.pace === "balanced" ? 2 : 0))));
   const load = data.pace === "easy" ? "Light" : data.pace === "full" ? "High" : "Balanced";
+
+  window.routecheckTrack?.("generate_itinerary", {
+    trip_days: data.days,
+    trip_pace: data.pace,
+    rain_ready: data.rainReady ? "yes" : "no"
+  });
 
   document.querySelector("#result-title").textContent = `${data.days} days in Seoul, built around ${data.interests.slice(0, 2).join(" + ")}`;
   document.querySelector("#route-score").textContent = `${routeScore}/100`;

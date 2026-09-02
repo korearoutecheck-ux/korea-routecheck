@@ -82,6 +82,8 @@ h1 em { color: var(--coral); font-weight: 500; }
 .guide-card h3 { margin: 22px 0 10px; font-family: Georgia, serif; font-size: 1.55rem; }
 .guide-card p { color: var(--ink-soft); font-size: .93rem; }
 .guide-card strong { margin-top: auto; }
+.intent-guides-section { padding-top: 0; }
+.planning-guide-grid { grid-template-columns: repeat(3, 1fr); }
 
 .planner-section { padding: 110px max(18px, calc((100% - 1180px) / 2)); background: var(--paper); }
 .section-heading { max-width: 680px; margin-bottom: 46px; }
@@ -125,6 +127,13 @@ input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--coral); 
 .booking-links { display: grid; gap: 10px; }
 .booking-links a { display: flex; justify-content: space-between; padding: 14px 16px; border-radius: 12px; color: var(--ink); background: var(--mint); text-decoration: none; font-weight: 850; }
 .booking-links a[data-disabled="true"] { cursor: not-allowed; opacity: .62; }
+
+.analytics-consent { position: fixed; z-index: 1000; right: 18px; bottom: 18px; width: min(520px, calc(100% - 36px)); padding: 20px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; border: 1px solid rgba(255,255,255,.16); border-radius: 18px; color: var(--paper); background: var(--ink); box-shadow: 0 22px 55px rgba(10,30,26,.28); }
+.analytics-consent strong { display: block; margin-bottom: 4px; }
+.analytics-consent p { margin: 0; color: #c5d8d2; font-size: .82rem; }
+.analytics-consent-actions { display: flex; gap: 8px; }
+.analytics-consent button { min-height: 40px; padding: 0 13px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; color: white; background: transparent; font-weight: 800; cursor: pointer; }
+.analytics-consent button[data-analytics-choice="allow"] { border-color: var(--coral); background: var(--coral); }
 
 .method-section { padding: 110px max(18px, calc((100% - 1180px) / 2)); display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; }
 .method-grid { display: grid; gap: 18px; }
@@ -196,6 +205,14 @@ footer strong { color: white; font-size: 1.1rem; }
 .time-grid p { margin-bottom: 0; color: var(--ink-soft); font-size: .88rem; }
 .route-line { margin: 19px 0 0; color: var(--ink-soft); font-size: .88rem; }
 .guide-content .rain-note { margin-top: 14px; }
+.guide-content > .guide-callout:first-child { margin: 0 0 72px; }
+.decision-section { margin-top: 78px; }
+.decision-section:first-of-type { margin-top: 0; }
+.decision-section > p:not(.eyebrow) { color: var(--ink-soft); font-size: 1.03rem; }
+.decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 24px; }
+.decision-grid article { padding: 23px; border: 1px solid var(--line); border-radius: 17px; background: var(--paper); }
+.decision-grid h3 { margin-bottom: 8px; font-family: Georgia, serif; font-size: 1.32rem; line-height: 1.12; }
+.decision-grid p { margin-bottom: 0; color: var(--ink-soft); font-size: .9rem; }
 .adjustment-section { margin-top: 75px; }
 .adjustment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
 .adjustment-grid article { padding: 21px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); }
@@ -219,6 +236,7 @@ footer strong { color: white; font-size: 1.1rem; }
   .submit-button { width: 100%; }
   .booking-panel { grid-template-columns: 1fr; }
   .guide-card-grid { grid-template-columns: 1fr 1fr; }
+  .planning-guide-grid { grid-template-columns: 1fr 1fr; }
   .guide-hero { grid-template-columns: 1fr; gap: 34px; }
   .guide-hero-copy { padding-top: 30px; }
   .guide-hero-media img { aspect-ratio: 16 / 9; }
@@ -240,13 +258,15 @@ footer strong { color: white; font-size: 1.1rem; }
   .check-grid { grid-template-columns: 1fr; }
   footer { grid-template-columns: 1fr; }
   .copyright { grid-column: auto; }
-  .guide-card-grid, .time-grid, .adjustment-grid { grid-template-columns: 1fr; }
+  .guide-card-grid, .time-grid, .adjustment-grid, .decision-grid { grid-template-columns: 1fr; }
   .guide-card { min-height: 230px; }
   .guide-facts { grid-template-columns: 1fr; }
   .guide-facts article, .guide-facts article:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
   .guide-facts article:last-child { border-bottom: 0; }
   .itinerary-day { padding: 23px; }
   .day-heading { grid-template-columns: 1fr; }
+  .analytics-consent { grid-template-columns: 1fr; }
+  .analytics-consent-actions { justify-content: flex-end; }
 }
 
 @media print {

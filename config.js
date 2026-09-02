@@ -3,6 +3,11 @@
   affiliate dashboards. Do not manually invent or modify tracking parameters.
 */
 window.ROUTECHECK_CONFIG = {
+  analytics: {
+    enabled: false,
+    provider: "ga4",
+    measurementId: ""
+  },
   affiliateLinks: {
     experiences: {
       enabled: true,

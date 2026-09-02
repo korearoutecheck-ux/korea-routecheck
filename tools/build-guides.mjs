@@ -244,13 +244,13 @@ function page(guide) {
   <meta property="og:type" content="article">
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260902-2">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
-<body class="guide-page">
+<body class="guide-page" data-guide="${guide.slug}">
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Korea RouteCheck home"><span class="brand-mark" aria-hidden="true">路</span><span>Korea RouteCheck</span></a>
-    <nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="#guides">Itinerary guides</a><a href="index.html#method">Method</a></nav>
+    <nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="#guides">Itineraries</a><a href="index.html#planning-guides">Planning guides</a></nav>
   </header>
 
   <main id="top">
@@ -320,8 +320,9 @@ function page(guide) {
     <div class="footer-links"><a href="index.html#planner">Planner</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
     <p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p>
   </footer>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <script src="config.js?v=20260902-2"></script>
+  <script src="analytics.js?v=20260902-2"></script>
+  <script src="app.js?v=20260902-2"></script>
 </body>
 </html>`;
 }
