@@ -50,7 +50,7 @@
   const banner = document.createElement("aside");
   banner.className = "analytics-consent";
   banner.setAttribute("aria-label", "Analytics preferences");
-  banner.innerHTML = `<div><strong>Help improve Korea RouteCheck</strong><p>Allow anonymous analytics to show which guides and planner features are useful. No itinerary form data is sent.</p></div><div class="analytics-consent-actions"><button type="button" data-analytics-choice="deny">Not now</button><button type="button" data-analytics-choice="allow">Allow analytics</button></div>`;
+  banner.innerHTML = `<div><strong>Help improve Korea RouteCheck</strong><p>Allow anonymous page and click analytics. Itinerary form entries are not sent.</p></div><div class="analytics-consent-actions"><button type="button" data-analytics-choice="deny">Not now</button><button type="button" data-analytics-choice="allow">Allow analytics</button></div>`;
   document.body.appendChild(banner);
 
   banner.addEventListener("click", event => {

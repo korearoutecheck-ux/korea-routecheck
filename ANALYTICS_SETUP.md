@@ -28,6 +28,7 @@ analytics: {
 | `view_guide` | A guide page loads after consent | `guide_type` |
 | `generate_itinerary` | The planner produces a route | `trip_days`, `trip_pace`, `rain_ready` |
 | `affiliate_click` | An active Viator or Airalo link is clicked | `affiliate_partner`, `page_path` |
+| `restaurant_map_click` | A visitor opens a restaurant in Naver Maps | `restaurant_name`, `page_path` |
 | `analytics_consent` | A visitor chooses to allow analytics | `consent_status` |
 
 The planner does not send traveler count, lodging budget, selected interests, generated itinerary text, names or email addresses to analytics.
@@ -36,6 +37,7 @@ The planner does not send traveler count, lodging budget, selected interests, ge
 
 - **Planner usage:** Events → `generate_itinerary`.
 - **Affiliate-link clicks:** Events → `affiliate_click`, broken down by `page_path`.
+- **Restaurant interest:** Events → `restaurant_map_click`, broken down by `restaurant_name` and `page_path`.
 - **Popular trip lengths:** Explore `generate_itinerary` using `trip_days`. Register `trip_days` as an event-scoped custom dimension if GA4 does not expose it automatically in the desired report.
 - **Search traffic:** Acquisition → Traffic acquisition, filtered to Organic Search.
 - **Landing pages:** Engagement → Landing page, then compare sessions, `generate_itinerary` and `affiliate_click`.

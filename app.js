@@ -1,63 +1,68 @@
 const CLUSTERS = [
   {
     id: "palace",
-    title: "Palaces, lanes & old Seoul",
+    title: "Palaces and old Seoul",
     area: "Jongno",
     tags: ["history", "food", "art"],
     intensity: 2,
-    description: "A compact historic route that moves south from the palace district into traditional lanes and evening streets.",
+    description: "Start at the palace, eat in Seochon and continue east through Insadong.",
     stops: ["Gyeongbokgung Palace", "Seochon", "Insadong", "Ikseon-dong"],
-    rain: "Swap the palace grounds for the National Palace Museum and spend longer in Insadong's galleries and tea houses."
+    rain: "Use the National Palace Museum, then spend more time in Insadong's galleries and tea houses."
   },
   {
     id: "market",
-    title: "Markets, design & the city center",
+    title: "Markets and central Seoul",
     area: "Jongno · Dongdaemun",
     tags: ["food", "shopping", "modern", "art"],
     intensity: 2,
-    description: "A food-first central route linking a traditional market, modern design, and an easy evening walk.",
+    description: "Visit Gwangjang Market, Dongdaemun and Euljiro in one central route.",
     stops: ["Gwangjang Market", "Dongdaemun Design Plaza", "Cheonggyecheon", "Euljiro"],
-    rain: "Use Dongdaemun Design Plaza and nearby malls as the main indoor anchors, then visit the market between showers."
+    rain: "Spend more time at Dongdaemun Design Plaza and visit the market during a dry window.",
+    meal: { name: "Buchon Yukhoe", note: "Gwangjang Market · from about ₩11,000", url: "https://map.naver.com/p/entry/place/36428555", id: "buchon-yukhoe" }
   },
   {
     id: "hongdae",
-    title: "Independent shops & northwest Seoul",
+    title: "Hongdae, Yeonnam and Mangwon",
     area: "Hongdae · Yeonnam · Mangwon",
     tags: ["food", "shopping", "art", "nightlife"],
     intensity: 2,
-    description: "A relaxed northwest day with small shops, cafes, a neighborhood market, and an optional late finish.",
+    description: "A relaxed day for cafes, small shops, Mangwon Market and a Hongdae evening.",
     stops: ["Yeonnam-dong", "Gyeongui Line Forest Park", "Mangwon Market", "Hongdae"],
-    rain: "Focus on cafes, object shops, galleries, and the covered sections of Mangwon Market."
+    rain: "Focus on cafes, shops, galleries and the covered parts of Mangwon Market.",
+    meal: { name: "Okdongsik", note: "Mapo · pork soup around ₩15,000", url: "https://map.naver.com/p/entry/place/859857359", id: "okdongsik" }
   },
   {
     id: "namsan",
-    title: "Classic central Seoul & skyline",
+    title: "Myeongdong and Namsan",
     area: "Myeongdong · Namdaemun · Namsan",
     tags: ["food", "shopping", "nature", "modern"],
     intensity: 3,
-    description: "A central shopping-and-view day that avoids adding distant neighborhoods to an already active route.",
+    description: "Shop, eat and finish with a city view without leaving central Seoul.",
     stops: ["Namdaemun Market", "Myeongdong", "Namsan route", "N Seoul Tower area"],
-    rain: "Replace the Namsan walk with indoor shopping and a long meal; keep the tower only if visibility improves."
+    rain: "Skip the Namsan walk, stay indoors and visit the tower only if visibility improves.",
+    meal: { name: "Myeongdong Kyoja", note: "Myeongdong · noodles from ₩12,000", url: "https://map.naver.com/p/entry/place/11592650", id: "myeongdong-kyoja" }
   },
   {
     id: "seongsu",
-    title: "Design Seoul & riverside breathing room",
+    title: "Seongsu and Seoul Forest",
     area: "Seongsu · Seoul Forest",
     tags: ["art", "shopping", "modern", "nature", "food"],
     intensity: 2,
-    description: "Contemporary retail and design are paired with a park and river edge so the day does not become one long shopping crawl.",
+    description: "Pair Seongsu's shops and cafes with Seoul Forest and an optional river walk.",
     stops: ["Seongsu design streets", "Seoul Forest", "Ttukseom Hangang Park", "Seongsu dinner"],
-    rain: "Prioritize pop-ups, cafes, and indoor design spaces; move the park portion to the clearest hour."
+    rain: "Stay with cafes, pop-ups and indoor shops, then use the clearest hour for the park.",
+    meal: { name: "Somunnan Seongsu Gamjatang", note: "Seongsu · meals from about ₩12,000", url: "https://map.naver.com/p/entry/place/11721256", id: "somunnan-seongsu" }
   },
   {
     id: "gangnam",
-    title: "Modern Gangnam, properly grouped",
+    title: "Modern Gangnam",
     area: "Samseong · Gangnam",
     tags: ["modern", "shopping", "food", "history"],
     intensity: 2,
-    description: "A south-of-the-river day combining modern architecture, shopping, and a calm historic counterpoint.",
+    description: "Combine Bongeunsa, COEX and Gangnam in one south-side day.",
     stops: ["Bongeunsa Temple", "COEX", "Starfield Library", "Gangnam evening"],
-    rain: "COEX and Starfield become the main route; visit Bongeunsa during the best weather window."
+    rain: "Stay inside COEX and visit Bongeunsa during a dry window.",
+    meal: { name: "Nongmin Baekam Sundae", note: "Gangnam · soup from ₩11,000", url: "https://map.naver.com/p/entry/place/13149768", id: "nongmin-baekam-sundae" }
   },
   {
     id: "jamsil",
@@ -65,39 +70,42 @@ const CLUSTERS = [
     area: "Jamsil",
     tags: ["modern", "nature", "shopping", "food"],
     intensity: 2,
-    description: "A self-contained east Seoul day with a lake, skyline views, and abundant indoor backup options.",
+    description: "Walk the lake, explore the mall and add a skyline view if the weather is clear.",
     stops: ["Seokchon Lake", "Lotte World Mall", "Seoul Sky area", "Songridan-gil"],
-    rain: "Use the mall, aquarium, and indoor observatory route; add the lake only if conditions allow."
+    rain: "Use the mall and aquarium. Add the lake only if the weather improves.",
+    meal: { name: "Bongpiyang", note: "Jamsil · noodles from ₩16,000", url: "https://map.naver.com/p/entry/place/11861413", id: "bongpiyang" }
   },
   {
     id: "itaewon",
-    title: "Art, hillside streets & evening energy",
+    title: "Yongsan and Itaewon",
     area: "Yongsan · Itaewon",
     tags: ["art", "food", "nightlife", "modern"],
     intensity: 2,
-    description: "A museum-led afternoon grows into a food and nightlife route without a cross-city transfer at the end.",
+    description: "Start with a museum, then move to Hannam and Itaewon for the evening.",
     stops: ["National Museum of Korea", "Leeum area", "Hannam-dong", "Itaewon evening"],
-    rain: "Give more time to the museums and Hannam's indoor spaces; skip unnecessary hillside walking."
+    rain: "Spend more time in the museums and shorten the hillside walking.",
+    meal: { name: "Goobok Mandu", note: "Yongsan · dumplings from ₩8,500", url: "https://map.naver.com/p/entry/place/36432841", id: "goobok-mandu" }
   },
   {
     id: "yeouido",
-    title: "River, architecture & a slower day",
+    title: "A slower day in Yeouido",
     area: "Yeouido",
     tags: ["nature", "modern", "shopping", "food"],
     intensity: 1,
-    description: "A low-friction recovery day built around the river, contemporary architecture, and easy indoor options.",
+    description: "Mix a river walk with The Hyundai Seoul and easy indoor stops.",
     stops: ["Yeouido Hangang Park", "The Hyundai Seoul", "IFC area", "River sunset"],
-    rain: "Use The Hyundai and IFC as indoor anchors and save the river for a short break between showers."
+    rain: "Stay inside The Hyundai and IFC, then walk by the river if it clears.",
+    meal: { name: "Jeongin Myeonok", note: "Yeouido · noodles from ₩15,000", url: "https://map.naver.com/p/entry/place/34883067", id: "jeongin-myeonok" }
   },
   {
     id: "bukchon",
-    title: "Architecture, craft & quiet northern lanes",
+    title: "Bukchon and Samcheong-dong",
     area: "Bukchon · Samcheong",
     tags: ["history", "art", "food", "shopping"],
     intensity: 2,
-    description: "A slower alternative to the palace route, emphasizing craft, architecture, galleries, and respectful neighborhood walking.",
+    description: "A quiet route for architecture, craft shops, galleries and cafes.",
     stops: ["Samcheong-dong", "Bukchon cultural spaces", "Craft galleries", "Anguk cafes"],
-    rain: "Use museums, galleries, and cafes as the route spine and keep residential-lane walking brief."
+    rain: "Stay with museums, galleries and cafes, and keep the residential walk short."
   }
 ];
 
@@ -230,7 +238,7 @@ if (form) form.addEventListener("submit", event => {
     rain_ready: data.rainReady ? "yes" : "no"
   });
 
-  document.querySelector("#result-title").textContent = `${data.days} days in Seoul, built around ${data.interests.slice(0, 2).join(" + ")}`;
+  document.querySelector("#result-title").textContent = `${data.days}-day Seoul itinerary: ${data.interests.slice(0, 2).join(" and ")}`;
   document.querySelector("#route-score").textContent = `${routeScore}/100`;
   document.querySelector("#daily-load").textContent = load;
   document.querySelector("#budget-total").textContent = `$${total.toLocaleString()}`;
@@ -245,6 +253,7 @@ if (form) form.addEventListener("submit", event => {
         <h3>${day.title}</h3>
         <p>${day.description}</p>
         <ul class="stops">${displayStops(day.stops, data.pace).map(stop => `<li>${stop}</li>`).join("")}</ul>
+        ${day.meal ? `<p class="meal-pick"><strong>Meal nearby:</strong> <a href="${day.meal.url}" target="_blank" rel="noopener" data-map-link="${day.meal.id}">${day.meal.name}</a> <span>· ${day.meal.note}</span></p>` : `<p class="meal-pick"><a href="where-to-eat-seoul-by-budget.html">See Seoul restaurant picks by budget</a></p>`}
         ${data.rainReady ? `<p class="rain-note"><strong>Rain fallback:</strong> ${day.rain}</p>` : ""}
       </div>
     </article>
@@ -263,4 +272,14 @@ if (form) form.addEventListener("submit", event => {
 
 const yearElement = document.querySelector("#year");
 if (yearElement) yearElement.textContent = new Date().getFullYear();
+
+document.addEventListener("click", event => {
+  const mapLink = event.target.closest("[data-map-link]");
+  if (!mapLink) return;
+  window.routecheckTrack?.("restaurant_map_click", {
+    restaurant_name: mapLink.dataset.mapLink,
+    page_path: window.location.pathname
+  });
+});
+
 applyAffiliateLinks();

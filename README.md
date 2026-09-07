@@ -12,6 +12,8 @@ Korea RouteCheck is a zero-API, static travel-planning web application. It build
 - Copies or prints the itinerary.
 - Includes dedicated, search-optimized 2-, 3-, 4-, 5-, and 7-day Seoul guides.
 - Includes six high-intent planning guides for rain, solo travel, arrival day, airport transfers, neighborhoods, and day trips.
+- Includes a budget-based Seoul dining guide with nine verified Naver Maps listings.
+- Adds neighborhood-matched restaurant suggestions to generated itineraries.
 - Includes consent-based GA4 event tracking using the configured Korea RouteCheck property.
 - Includes an active Viator affiliate link; the Airalo placement remains disabled.
 - Stores no itinerary data and requires no account.
@@ -20,7 +22,7 @@ Korea RouteCheck is a zero-API, static travel-planning web application. It build
 
 1. Test the active Viator booking link and confirm attribution in the affiliate dashboard.
 2. Keep the Airalo integration disabled unless a future application is approved and an official tracking link is issued.
-3. Monitor GA4, Search Console and Viator conversion data.
+3. Monitor GA4, Search Console and Viator conversion data, including restaurant-map clicks.
 4. The monitored business email is configured as `korearoutecheck@gmail.com`.
 5. Verify all travel recommendations, hours and prices before promoting the site.
 
