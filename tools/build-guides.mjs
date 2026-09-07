@@ -4,6 +4,9 @@ import { join } from "node:path";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const siteBase = "https://korearoutecheck-ux.github.io/korea-routecheck";
+const siteImage = `${siteBase}/assets/seoul-han-river.webp`;
+const publishedDate = "2026-09-01";
+const modifiedDate = "2026-09-06";
 
 const days = {
   palace: {
@@ -105,6 +108,8 @@ const guides = [
     slug: "seoul-2-day-itinerary",
     kicker: "The focused first visit",
     title: "A realistic 2-day Seoul itinerary",
+    seoTitle: "2-Day Seoul Itinerary for First-Time Visitors",
+    cardTitle: "Seoul essentials",
     description: "A practical two-day Seoul itinerary grouping Gyeongbokgung, Insadong, Namdaemun, Myeongdong and Namsan into two efficient central days.",
     lede: "Two days can deliver a strong first look at Seoul—but only if the route resists distant detours. This plan stays central, protects walking energy and saves Hongdae, Seongsu and Gangnam for another trip.",
     facts: [
@@ -127,6 +132,8 @@ const guides = [
     slug: "seoul-3-day-itinerary",
     kicker: "The first-trip sweet spot",
     title: "A balanced 3-day Seoul itinerary",
+    seoTitle: "3-Day Seoul Itinerary for First-Time Visitors",
+    cardTitle: "First-trip balance",
     description: "A neighborhood-clustered three-day Seoul itinerary covering royal Seoul, Myeongdong and Namsan, plus Hongdae, Yeonnam and Mangwon.",
     lede: "Three days is enough to see Seoul's historic center, classic skyline and one distinctly local-feeling district without turning every day into a race across the subway map.",
     facts: [
@@ -145,10 +152,37 @@ const guides = [
     ]
   },
   {
+    days: 4,
+    slug: "seoul-4-day-itinerary",
+    kicker: "Four days without rushing",
+    title: "A realistic 4-day Seoul itinerary",
+    seoTitle: "4-Day Seoul Itinerary for First-Time Visitors",
+    cardTitle: "Seoul beyond the essentials",
+    description: "A practical four-day Seoul itinerary covering royal Seoul, Myeongdong, Namsan, Hongdae, Yeonnam, Mangwon, Seongsu and Seoul Forest by area.",
+    lede: "Four days gives a first-time visitor enough room for Seoul's historic center, a skyline evening, the northwest's independent neighborhoods and one contemporary east-Seoul day—without treating the subway as the main attraction.",
+    facts: [
+      ["Best for", "A rounded first visit"],
+      ["Daily pace", "Balanced, with flexible evenings"],
+      ["Best base", "Jongno, Euljiro or Myeongdong"],
+      ["Range", "History, markets and creative Seoul"]
+    ],
+    dayKeys: ["palace", "center", "northwest", "seongsu"],
+    overview: "The first two days cover royal and central Seoul. Day three keeps Yeonnam, Mangwon and Hongdae together, while day four gives Seoul Forest and Seongsu enough time to work as a real neighborhood day rather than a quick cafe stop.",
+    callout: "A four-day visit is usually too short for both a day trip and a complete Seoul overview. Replace one city day only when the DMZ, Suwon or another excursion is a personal priority.",
+    adjustments: [
+      ["History priority", "Replace Seongsu with a museum-led Yongsan day or spend more time in the palace district."],
+      ["Shopping priority", "Keep Myeongdong and Seongsu, then shorten the market stops instead of adding another retail district."],
+      ["Rainy forecast", "Use the central or Seongsu day for the wettest weather and protect the palace morning for the clearest forecast."]
+    ],
+    publishedDate: modifiedDate
+  },
+  {
     days: 5,
     slug: "seoul-5-day-itinerary",
     kicker: "Old Seoul and the creative city",
     title: "A coherent 5-day Seoul itinerary",
+    seoTitle: "5-Day Seoul Itinerary: Old and New Seoul",
+    cardTitle: "Old and new Seoul",
     description: "A realistic five-day Seoul itinerary with the historic core, Namsan, Hongdae, Seongsu, Seoul Forest, Yongsan museums and Itaewon.",
     lede: "Five days lets Seoul expand beyond the checklist. The route still protects one principle: every day should feel geographically whole, even when the week crosses the river and changes character.",
     facts: [
@@ -171,6 +205,8 @@ const guides = [
     slug: "seoul-7-day-itinerary",
     kicker: "A full Seoul week",
     title: "A complete 7-day Seoul itinerary",
+    seoTitle: "7-Day Seoul Itinerary: A Complete First Visit",
+    cardTitle: "The complete city week",
     description: "A seven-day Seoul itinerary covering Jongno, Myeongdong, Hongdae, Seongsu, Yongsan, Gangnam and Jamsil without inefficient cross-city days.",
     lede: "A full week makes room for Seoul's different centers. This route moves from royal neighborhoods to independent northwest streets, design districts, museums and the modern city south of the river.",
     facts: [
@@ -213,22 +249,40 @@ function dayMarkup(day, index) {
 }
 
 function guideCards(currentSlug) {
-  return guides.map(guide => `<a class="guide-card" href="${guide.slug}.html"${guide.slug === currentSlug ? ' aria-current="page"' : ""}><span>${guide.days} days</span><h3>${guide.days === 2 ? "Seoul essentials" : guide.days === 3 ? "First-trip balance" : guide.days === 5 ? "Old and new Seoul" : "The complete city week"}</h3><p>${guide.description}</p><strong>${guide.slug === currentSlug ? "Current guide" : "See the route →"}</strong></a>`).join("\n        ");
+  return guides.map(guide => `<a class="guide-card" href="${guide.slug}.html"${guide.slug === currentSlug ? ' aria-current="page"' : ""}><span>${guide.days} days</span><h3>${guide.cardTitle}</h3><p>${guide.description}</p><strong>${guide.slug === currentSlug ? "Current guide" : "See the route →"}</strong></a>`).join("\n        ");
 }
 
 function page(guide) {
   const routeDays = guide.dayKeys.map(key => days[key]);
   const canonical = `${siteBase}/${guide.slug}.html`;
-  const schema = {
-    "@context": "https://schema.org",
+  const articleSchema = {
+    "@id": `${canonical}#article`,
     "@type": "Article",
     headline: guide.title,
     description: guide.description,
-    mainEntityOfPage: canonical,
-    author: { "@type": "Organization", name: "Korea RouteCheck" },
-    publisher: { "@type": "Organization", name: "Korea RouteCheck" },
+    image: siteImage,
+    datePublished: guide.publishedDate || publishedDate,
+    dateModified: modifiedDate,
+    inLanguage: "en",
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+    author: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
+    publisher: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
     about: { "@type": "Place", name: "Seoul, South Korea" },
     hasPart: routeDays.map((day, index) => ({ "@type": "TouristTrip", name: `Day ${index + 1}: ${day.title}`, touristType: "First-time visitors to Seoul" }))
+  };
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      articleSchema,
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${siteBase}/` },
+          { "@type": "ListItem", position: 2, name: "Seoul itineraries", item: `${siteBase}/#guides` },
+          { "@type": "ListItem", position: 3, name: `${guide.days}-day Seoul itinerary`, item: canonical }
+        ]
+      }
+    ]
   };
 
   return `<!doctype html>
@@ -236,8 +290,9 @@ function page(guide) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${guide.title} | Korea RouteCheck</title>
+  <title>${guide.seoTitle} | Korea RouteCheck</title>
   <meta name="description" content="${guide.description}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#112f2a">
   <meta property="og:title" content="${guide.title}">
   <meta property="og:description" content="${guide.description}">
@@ -250,7 +305,7 @@ function page(guide) {
 <body class="guide-page" data-guide="${guide.slug}">
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Korea RouteCheck home"><span class="brand-mark" aria-hidden="true">路</span><span>Korea RouteCheck</span></a>
-    <nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="#guides">Itineraries</a><a href="index.html#planning-guides">Planning guides</a></nav>
+    <nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#planning-guides">Planning guides</a></nav>
   </header>
 
   <main id="top">
@@ -274,7 +329,7 @@ function page(guide) {
     </section>
 
     <div class="guide-layout">
-      <aside class="guide-toc" aria-label="On this page"><strong>On this page</strong><a href="#overview">Route logic</a><a href="#plan">Day-by-day plan</a><a href="#adjustments">Adjustments</a><a href="#booking">Booking shortcuts</a><a href="#sources">Check current details</a></aside>
+      <aside class="guide-toc" aria-label="On this page"><strong>On this page</strong><a href="#overview">Route logic</a><a href="#plan">Day-by-day plan</a><a href="#adjustments">Adjustments</a><a href="#affiliate-booking">Booking shortcuts</a><a href="#sources">Check current details</a></aside>
       <article class="guide-content">
         <section class="guide-intro" id="overview">
           <p class="eyebrow">Route logic</p>
@@ -295,9 +350,9 @@ function page(guide) {
           <div class="adjustment-grid">${guide.adjustments.map(([title, text]) => `<article><h3>${title}</h3><p>${text}</p></article>`).join("\n")}</div>
         </section>
 
-        <aside class="booking-panel" id="booking">
+        <aside class="booking-panel" id="affiliate-booking">
           <div><p class="eyebrow">Optional booking shortcuts</p><h3>Book around the route—not the other way around.</h3><p>Commercial links are clearly disclosed and activate only after the relevant partner approves Korea RouteCheck.</p></div>
-          <div class="booking-links"><a data-affiliate="experiences" href="#">Compare Seoul experiences <span>→</span></a><a data-affiliate="esim" href="#">Set up a Korea eSIM <span>→</span></a></div>
+          <div class="booking-links"><a data-affiliate="experiences" href="#">Compare Seoul tours and activities <span>→</span></a></div>
         </aside>
 
         <section class="source-section" id="sources">

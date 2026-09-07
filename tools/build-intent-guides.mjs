@@ -4,6 +4,9 @@ import { join } from "node:path";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const siteBase = "https://korearoutecheck-ux.github.io/korea-routecheck";
+const siteImage = `${siteBase}/assets/seoul-han-river.webp`;
+const publishedDate = "2026-09-02";
+const modifiedDate = "2026-09-06";
 const imageCredit = `<figure class="guide-hero-media"><img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline stretching along the Han River" fetchpriority="high"><figcaption>Seoul across the Han River. Public-domain image via <a href="https://commons.wikimedia.org/wiki/File:Han_River_Seoul_skyline_Pixabay_1214950.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</figcaption></figure>`;
 
 const guides = [
@@ -12,6 +15,7 @@ const guides = [
     label: "Rainy-day Seoul",
     kicker: "A weather-proof city day",
     title: "A rainy-day Seoul itinerary that still feels like Seoul",
+    seoTitle: "Rainy Day in Seoul: A Practical Indoor Itinerary",
     description: "A practical rainy-day Seoul itinerary with indoor neighborhood clusters in Jamsil, Yongsan and COEX, plus a full-day plan that avoids wet cross-city transfers.",
     lede: "Rain should change the shape of a Seoul day, not erase it. The strongest plan chooses one indoor-heavy district, limits exposed transfers and keeps one flexible outdoor window instead of chasing clear weather across the city.",
     chips: ["One indoor district", "Short exposed transfers", "Budget alternatives"],
@@ -43,6 +47,7 @@ const guides = [
     label: "Seoul solo travel",
     kicker: "Independent without feeling isolated",
     title: "Seoul for solo travelers: where to stay, eat and explore",
+    seoTitle: "Solo Travel in Seoul: Practical First-Timer Guide",
     description: "A practical Seoul solo travel guide covering the easiest neighborhoods, comfortable solo dining, a one-day route, safety basics and ways to meet other travelers.",
     lede: "Seoul is well suited to independent travel: transit is extensive, many days work without reservations and cafes create natural pauses. The better solo plan combines easy navigation with one or two optional social moments.",
     chips: ["Easy navigation", "Solo-friendly meals", "Optional group activities"],
@@ -74,6 +79,7 @@ const guides = [
     label: "First day in Seoul",
     kicker: "An arrival day that respects reality",
     title: "Your first day in Seoul: a plan for every arrival time",
+    seoTitle: "First Day in Seoul: Plans by Arrival Time",
     description: "A first-day Seoul plan organized by morning, afternoon and evening arrival, with airport transfer, luggage, jet lag and neighborhood-based route advice.",
     lede: "The first day should create orientation, not exhaustion. Immigration, baggage, the airport transfer and hotel access often consume more time than expected, so the best plan starts near the accommodation and keeps every attraction optional.",
     chips: ["Arrival-time options", "Jet-lag aware", "No rigid reservations"],
@@ -106,6 +112,7 @@ const guides = [
     label: "Incheon Airport arrival",
     kicker: "From the terminal to the right neighborhood",
     title: "Incheon Airport to Seoul: choose the right transfer",
+    seoTitle: "Incheon Airport to Seoul: AREX, Bus or Taxi?",
     description: "An Incheon Airport arrival guide comparing AREX express and all-stop trains, airport buses and taxis by luggage, landing time and Seoul neighborhood.",
     lede: "There is no universally best airport transfer. The fastest train can still be inconvenient for a hotel far from Seoul Station, while a bus can be the simplest option when it stops close to the accommodation.",
     chips: ["Terminal 1 and 2", "Train, bus or taxi", "Late-arrival fallback"],
@@ -138,6 +145,7 @@ const guides = [
     label: "Seoul neighborhoods",
     kicker: "Choose a base before choosing a hotel",
     title: "Best Seoul neighborhoods for first-time visitors",
+    seoTitle: "Best Areas to Stay in Seoul for First-Time Visitors",
     description: "A first-time Seoul neighborhood guide comparing Jongno, Myeongdong, Hongdae, Itaewon, Gangnam, Jamsil and Seongsu by sightseeing, nightlife and airport convenience.",
     lede: "The best neighborhood is the one that reduces travel to the places that matter most. For a short first visit, central Seoul usually wins; for a longer trip, airport convenience, nightlife or a specific south-of-the-river focus can justify another base.",
     chips: ["Seven neighborhoods", "Clear tradeoffs", "Short-trip recommendations"],
@@ -169,6 +177,7 @@ const guides = [
     label: "Seoul day trips",
     kicker: "Leave the city for the right reason",
     title: "Best day trips from Seoul: which one fits your trip?",
+    seoTitle: "Best Day Trips from Seoul: Compare 5 Options",
     description: "Compare the best Seoul day trips—including Suwon, the DMZ, Nami Island, the Garden of Morning Calm and Incheon—by independence, travel effort and interest.",
     lede: "A day trip should add something Seoul cannot provide, not merely fill a free day. The right choice depends on whether the traveler wants history, divided-Korea context, scenery, seasonal gardens or an easy independent outing.",
     chips: ["Independent and guided options", "Realistic tradeoffs", "First-trip priorities"],
@@ -212,15 +221,33 @@ function relatedMarkup(currentSlug) {
 
 function page(guide) {
   const canonical = `${siteBase}/${guide.slug}.html`;
-  const schema = {
-    "@context": "https://schema.org",
+  const articleSchema = {
+    "@id": `${canonical}#article`,
     "@type": "Article",
     headline: guide.title,
     description: guide.description,
-    mainEntityOfPage: canonical,
-    author: { "@type": "Organization", name: "Korea RouteCheck" },
-    publisher: { "@type": "Organization", name: "Korea RouteCheck" },
+    image: siteImage,
+    datePublished: publishedDate,
+    dateModified: modifiedDate,
+    inLanguage: "en",
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+    author: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
+    publisher: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
     about: { "@type": "Place", name: "Seoul, South Korea" }
+  };
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      articleSchema,
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${siteBase}/` },
+          { "@type": "ListItem", position: 2, name: "Seoul planning guides", item: `${siteBase}/#planning-guides` },
+          { "@type": "ListItem", position: 3, name: guide.label, item: canonical }
+        ]
+      }
+    ]
   };
 
   return `<!doctype html>
@@ -228,8 +255,9 @@ function page(guide) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${guide.title} | Korea RouteCheck</title>
+  <title>${guide.seoTitle} | Korea RouteCheck</title>
   <meta name="description" content="${guide.description}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#112f2a">
   <meta property="og:title" content="${guide.title}">
   <meta property="og:description" content="${guide.description}">
@@ -244,8 +272,8 @@ function page(guide) {
   <main id="top">
     <section class="guide-hero"><div class="guide-hero-copy"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#planning-guides">Planning guides</a><span>/</span><span>${guide.label}</span></div><p class="eyebrow">${guide.kicker}</p><h1>${guide.title}</h1><p class="hero-lede">${guide.lede}</p><div class="hero-actions"><a class="button button-primary" href="index.html#planner">Build a Seoul itinerary</a><span class="microcopy">Free · No account required</span></div><ul class="trip-chips">${guide.chips.map(chip => `<li>${chip}</li>`).join("")}</ul></div>${imageCredit}</section>
     <section class="guide-facts" aria-label="Guide summary">${guide.facts.map(([label, value]) => `<article><small>${label}</small><strong>${value}</strong></article>`).join("\n")}</section>
-    <div class="guide-layout"><aside class="guide-toc" aria-label="On this page"><strong>On this page</strong>${guide.sections.map(section => `<a href="#${section.id}">${section.title}</a>`).join("")}<a href="#booking">Booking shortcuts</a><a href="#sources">Official sources</a></aside><article class="guide-content"><div class="guide-callout"><strong>The key decision</strong><p>${guide.note}</p></div>${guide.sections.map(sectionMarkup).join("\n")}
-      <aside class="booking-panel" id="booking"><div><p class="eyebrow">Optional booking shortcut</p><h3>Compare activities that fit this plan.</h3><p>Use the route first, then book only the experience that adds real value. Affiliate relationships are disclosed clearly.</p></div><div class="booking-links"><a data-affiliate="experiences" href="#">Compare Seoul experiences <span>→</span></a><a data-affiliate="esim" href="#">Set up a Korea eSIM <span>→</span></a></div></aside>
+    <div class="guide-layout"><aside class="guide-toc" aria-label="On this page"><strong>On this page</strong>${guide.sections.map(section => `<a href="#${section.id}">${section.title}</a>`).join("")}<a href="#affiliate-booking">Booking shortcuts</a><a href="#sources">Official sources</a></aside><article class="guide-content"><div class="guide-callout"><strong>The key decision</strong><p>${guide.note}</p></div>${guide.sections.map(sectionMarkup).join("\n")}
+      <aside class="booking-panel" id="affiliate-booking"><div><p class="eyebrow">Optional booking shortcut</p><h3>Compare activities that fit this plan.</h3><p>Use the route first, then book only the experience that adds real value. Affiliate relationships are disclosed clearly.</p></div><div class="booking-links"><a data-affiliate="experiences" href="#">Compare Seoul tours and activities <span>→</span></a></div></aside>
       <section class="source-section" id="sources"><p class="eyebrow">Check before traveling</p><h2>Official sources</h2><p>Transport, access, hours and operating conditions change. Verify current details directly before spending money or restructuring a day.</p><ul class="source-list">${guide.sources.map(([title, url]) => `<li><a href="${url}" target="_blank" rel="noopener">${title}</a></li>`).join("\n")}</ul></section>
     </article></div>
     <section class="guide-switcher" id="related"><div class="section-heading"><p class="eyebrow">Keep planning</p><h2>Related Seoul guides</h2><p>Use the next guide to solve a different part of the trip.</p></div><div class="guide-card-grid planning-guide-grid">${relatedMarkup(guide.slug)}</div></section>

@@ -4,8 +4,9 @@
   <meta name="impact-site-verification" value="12b1fbeb-7c79-48c6-aacc-c4c94c9bf42f">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Korea RouteCheck — Build a Seoul itinerary that actually fits</title>
-  <meta name="description" content="Build a realistic Seoul itinerary by neighborhood, pace, budget, and interests. Reduce backtracking, estimate costs, and plan rain-ready days.">
+  <title>Seoul Itinerary Planner | Korea RouteCheck</title>
+  <meta name="description" content="Build a realistic Seoul itinerary by neighborhood, pace, weather, interests and budget. Compare practical 2-, 3-, 4-, 5- and 7-day Seoul routes.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#112f2a">
   <meta property="og:title" content="Korea RouteCheck">
   <meta property="og:description" content="A realistic, neighborhood-clustered Seoul itinerary in under a minute.">
@@ -16,12 +17,34 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Korea RouteCheck",
-    "applicationCategory": "TravelApplication",
-    "operatingSystem": "Any",
-    "description": "A free tool that builds realistic Seoul itineraries by neighborhood, pace, budget, and interests.",
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://korearoutecheck-ux.github.io/korea-routecheck/#organization",
+        "name": "Korea RouteCheck",
+        "url": "https://korearoutecheck-ux.github.io/korea-routecheck/"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://korearoutecheck-ux.github.io/korea-routecheck/#website",
+        "name": "Korea RouteCheck",
+        "url": "https://korearoutecheck-ux.github.io/korea-routecheck/",
+        "inLanguage": "en",
+        "publisher": {"@id": "https://korearoutecheck-ux.github.io/korea-routecheck/#organization"}
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korearoutecheck-ux.github.io/korea-routecheck/#planner",
+        "name": "Korea RouteCheck Seoul Itinerary Planner",
+        "url": "https://korearoutecheck-ux.github.io/korea-routecheck/#planner",
+        "applicationCategory": "TravelApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "description": "A free tool that builds realistic Seoul itineraries by neighborhood, pace, weather, budget and interests.",
+        "provider": {"@id": "https://korearoutecheck-ux.github.io/korea-routecheck/#organization"},
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+      }
+    ]
   }
   </script>
 </head>
@@ -97,6 +120,7 @@
       <div class="guide-card-grid">
         <a class="guide-card" href="seoul-2-day-itinerary.html"><span>2 days</span><h3>Seoul essentials</h3><p>Royal Seoul, central markets, Myeongdong and Namsan—with no cross-city detours.</p><strong>See the route →</strong></a>
         <a class="guide-card" href="seoul-3-day-itinerary.html"><span>3 days</span><h3>First-trip balance</h3><p>Add Hongdae, Yeonnam and Mangwon as one coherent northwest Seoul day.</p><strong>See the route →</strong></a>
+        <a class="guide-card" href="seoul-4-day-itinerary.html"><span>4 days</span><h3>Beyond the essentials</h3><p>Add Seoul Forest and Seongsu without squeezing them into a distant central-city day.</p><strong>See the route →</strong></a>
         <a class="guide-card" href="seoul-5-day-itinerary.html"><span>5 days</span><h3>Old and new Seoul</h3><p>Make room for Seongsu, Seoul Forest, Yongsan museums and an Itaewon evening.</p><strong>See the route →</strong></a>
         <a class="guide-card" href="seoul-7-day-itinerary.html"><span>7 days</span><h3>The complete city week</h3><p>Explore both sides of the river without mixing distant districts into the same day.</p><strong>See the route →</strong></a>
       </div>
@@ -201,8 +225,7 @@
             <p>These recommendations support Korea RouteCheck at no additional cost when affiliate tracking is active.</p>
           </div>
           <div class="booking-links">
-            <a data-affiliate="experiences" href="#">Compare Seoul experiences <span>→</span></a>
-            <a data-affiliate="esim" href="#">Set up a Korea eSIM <span>→</span></a>
+            <a data-affiliate="experiences" href="#">Compare Seoul tours and activities <span>→</span></a>
           </div>
         </aside>
       </section>
