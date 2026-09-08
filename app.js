@@ -184,6 +184,7 @@ function buildPlainText(plan, data, total) {
     lines.push("");
   });
   lines.push("Verify current hours, closures, reservations, and prices before traveling.");
+  lines.push("Open this itinerary: " + planUrl(data).toString());
   return lines.join("\n");
 }
 
@@ -341,8 +342,35 @@ async function copyText(text) {
   temporary.style.opacity = "0";
   document.body.appendChild(temporary);
   temporary.select();
-  document.execCommand("copy");
+  const copied = document.execCommand("copy");
   temporary.remove();
+  if (!copied) throw new Error("Copy unavailable");
+}
+
+async function shareResource(button, payload, eventName, parameters = {}) {
+  const originalLabel = button.textContent;
+  button.disabled = true;
+  let method = "copy";
+  try {
+    if (typeof navigator.share === "function") {
+      try {
+        await navigator.share(payload);
+        method = "native";
+      } catch (error) {
+        if (error.name === "AbortError") return;
+        await copyText(payload.url);
+      }
+    } else {
+      await copyText(payload.url);
+    }
+    button.textContent = method === "native" ? "Shared" : "Link copied";
+    window.routecheckTrack?.(eventName, { ...parameters, share_method: method });
+  } catch (_) {
+    button.textContent = "Could not share — try again";
+  } finally {
+    button.disabled = false;
+    setTimeout(() => { button.textContent = originalLabel; }, 2000);
+  }
 }
 
 function applyAffiliateLinks() {
@@ -389,20 +417,26 @@ if (form) {
 
   document.querySelector("#copy-plan").addEventListener("click", async event => {
     if (!activePlan) return;
-    await copyText(buildPlainText(activePlan.plan, activePlan.data, activePlan.total));
-    event.currentTarget.textContent = "Copied";
-    window.routecheckTrack?.("copy_itinerary", { trip_days: activePlan.data.days });
-    setTimeout(() => { event.currentTarget.textContent = "Copy plan"; }, 1600);
+    const button = event.currentTarget;
+    const plan = activePlan;
+    try {
+      await copyText(buildPlainText(plan.plan, plan.data, plan.total));
+      button.textContent = "Copied";
+      window.routecheckTrack?.("copy_itinerary", { trip_days: plan.data.days });
+    } catch (_) {
+      button.textContent = "Could not copy — try again";
+    }
+    setTimeout(() => { button.textContent = "Copy plan"; }, 2000);
   });
 
   document.querySelector("#share-plan").addEventListener("click", async event => {
     if (!activePlan) return;
     const url = planUrl(activePlan.data);
     window.history.replaceState({}, "", url);
-    await copyText(url.toString());
-    event.currentTarget.textContent = "Link copied";
-    window.routecheckTrack?.("share_itinerary", { trip_days: activePlan.data.days });
-    setTimeout(() => { event.currentTarget.textContent = "Share link"; }, 1600);
+    await shareResource(event.currentTarget, {
+      title: `${activePlan.data.days}-day Seoul itinerary | Korea RouteCheck`,
+      url: url.toString()
+    }, "share_itinerary", { trip_days: activePlan.data.days });
   });
 
   document.querySelector("#print-plan").addEventListener("click", () => {
@@ -453,3 +487,20 @@ document.addEventListener("click", event => {
 });
 
 applyAffiliateLinks();
+
+const guideActions = document.querySelector(".guide-hero .hero-actions");
+if (document.body.dataset.guide && guideActions) {
+  const shareGuide = document.createElement("button");
+  shareGuide.type = "button";
+  shareGuide.className = "button button-secondary";
+  shareGuide.textContent = "Share guide";
+  guideActions.appendChild(shareGuide);
+  shareGuide.addEventListener("click", () => {
+    const url = document.querySelector('link[rel="canonical"]')?.href;
+    if (!url) return;
+    shareResource(shareGuide, { title: document.title, url }, "share_guide", {
+      guide_type: document.body.dataset.guide,
+      page_path: window.location.pathname
+    });
+  });
+}
