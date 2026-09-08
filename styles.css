@@ -23,6 +23,10 @@ body {
 a { color: inherit; }
 button, input, select { font: inherit; }
 
+.skip-link { position: fixed; z-index: 2000; top: 10px; left: 10px; padding: 10px 14px; border-radius: 10px; color: white; background: var(--ink); transform: translateY(-160%); transition: transform .15s ease; }
+.skip-link:focus { transform: translateY(0); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #f3a38f; outline-offset: 3px; }
+
 .site-header {
   position: sticky;
   top: 0;
@@ -96,7 +100,10 @@ h1 em { color: var(--coral); font-weight: 500; }
 .planner-section { padding: 78px max(18px, calc((100% - 1180px) / 2)); background: var(--paper); }
 .section-heading { max-width: 740px; margin-bottom: 34px; }
 .section-heading h2, .method-section h2, .faq-section h2 { margin-bottom: 16px; font-family: Georgia, serif; font-size: clamp(2.25rem, 4vw, 4rem); line-height: 1; letter-spacing: -.04em; font-weight: 500; }
-.section-heading > p:last-child { color: var(--ink-soft); font-size: 1.05rem; }
+.section-heading > p:last-of-type { color: var(--ink-soft); font-size: 1.05rem; }
+.planner-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.planner-shortcuts button { min-height: 40px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: white; font-size: .82rem; font-weight: 800; cursor: pointer; }
+.planner-shortcuts button:hover { border-color: var(--mint-deep); background: var(--mint); }
 
 .planner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 fieldset { min-width: 0; margin: 0; padding: 23px; border: 1px solid var(--line); border-radius: var(--radius); background: #f8fafe; }
@@ -115,6 +122,7 @@ input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--coral); 
 .results-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-top: 48px; border-top: 1px solid var(--line); }
 .results-toolbar h2 { margin-bottom: 0; font-family: Georgia, serif; font-size: clamp(2.1rem, 4vw, 3.7rem); font-weight: 500; letter-spacing: -.04em; }
 .toolbar-actions { display: flex; gap: 10px; }
+.plan-status { margin: 14px 0 0; color: var(--ink-soft); font-size: .82rem; }
 .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
 .score-grid article { padding: 23px; border-radius: 18px; background: var(--mint); }
 .score-grid span { display: block; font-family: Georgia, serif; font-size: 2rem; font-weight: 700; }
@@ -126,7 +134,10 @@ input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--coral); 
 .day-content h3 { margin-bottom: 8px; font-family: Georgia, serif; font-size: 1.65rem; }
 .day-content > p { color: var(--ink-soft); }
 .stops { display: flex; flex-wrap: wrap; gap: 8px; margin: 17px 0; padding: 0; list-style: none; }
-.stops li { padding: 7px 11px; border-radius: 999px; background: var(--cream); font-size: .84rem; font-weight: 750; }
+.stops li { border-radius: 999px; background: var(--cream); font-size: .84rem; font-weight: 750; }
+.stops a { display: inline-flex; align-items: center; gap: 7px; padding: 7px 11px 7px 7px; text-decoration: none; }
+.stops a:hover { color: var(--coral); }
+.stops a span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: white; background: var(--ink); font-size: .72rem; }
 .rain-note { margin: 14px 0 0; padding: 13px 15px; border-left: 3px solid var(--mint-deep); background: rgba(207,232,221,.35); font-size: .84rem; }
 
 .booking-panel { margin-top: 26px; padding: 30px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 38px; border-radius: var(--radius); color: var(--paper); background: var(--ink); }
@@ -174,7 +185,8 @@ input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--coral); 
 
 .about-section { padding: 62px max(18px, calc((100% - 1180px) / 2)); display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: center; color: white; background: #1b3760; }
 .about-section h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(2.1rem, 4vw, 3.7rem); line-height: 1; letter-spacing: -.04em; font-weight: 500; }
-.about-section > p { margin: 0; color: #d3deeb; font-size: 1.05rem; }
+.about-section > p, .about-section > div:last-child > p { margin: 0; color: #d3deeb; font-size: 1.05rem; }
+.about-link { display: inline-block; margin-top: 15px; color: white; font-weight: 850; text-underline-offset: 4px; }
 
 .faq-section { padding: 78px max(18px, calc((100% - 900px) / 2)); background: var(--paper); }
 details { padding: 21px 0; border-bottom: 1px solid var(--line); }
@@ -191,6 +203,22 @@ footer strong { color: white; font-size: 1.1rem; }
 .legal h1 { font-size: clamp(3rem, 7vw, 5rem); }
 .legal h2 { margin-top: 38px; font-family: Georgia, serif; font-size: 1.6rem; }
 .legal p, .legal li { color: var(--ink-soft); }
+.legal-lede { font-size: 1.14rem; }
+.quality-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 38px 0 48px; }
+.quality-grid article { padding: 21px; border: 1px solid var(--line); border-radius: 17px; background: var(--paper); }
+.quality-grid strong { display: block; margin-bottom: 7px; color: var(--coral); }
+.quality-grid p { margin: 0; font-size: .9rem; }
+.contact-card { margin-top: 44px; padding: 24px; border-radius: 18px; background: var(--mint); }
+.contact-card h2 { margin-top: 0; }
+.contact-card p:last-child { margin-bottom: 0; }
+.not-found { min-height: calc(100vh - 200px); display: grid; place-items: center; padding: 70px 18px; }
+.not-found-card { width: min(720px, 100%); padding: clamp(28px, 6vw, 58px); border: 1px solid var(--line); border-radius: 28px; background: white; box-shadow: var(--shadow); text-align: center; }
+.not-found-card h1 { font-size: clamp(3rem, 8vw, 5.5rem); }
+.not-found-card .hero-actions { justify-content: center; }
+
+.editorial-note { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 14px; margin-top: 20px; color: var(--ink-soft); font-size: .82rem; }
+.editorial-note a { font-weight: 800; text-underline-offset: 3px; }
+.source-section .editorial-link { display: inline-block; margin-top: 9px; color: var(--ink); font-weight: 850; text-underline-offset: 3px; }
 
 /* Editorial itinerary pages */
 .guide-page main { overflow: visible; }
@@ -210,11 +238,11 @@ footer strong { color: white; font-size: 1.1rem; }
 .guide-facts small { display: block; margin-bottom: 6px; color: var(--coral); font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .guide-facts strong { font-family: Georgia, serif; font-size: 1.12rem; }
 .guide-layout { width: min(1180px, calc(100% - 36px)); margin: 0 auto 80px; display: grid; grid-template-columns: 220px minmax(0, 800px); justify-content: space-between; gap: 50px; }
-.guide-toc { position: sticky; top: 22px; align-self: start; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); }
+.guide-toc { position: sticky; top: 94px; align-self: start; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); }
 .guide-toc strong { display: block; margin-bottom: 12px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
 .guide-toc a { display: block; padding: 7px 0; color: var(--ink-soft); font-size: .87rem; font-weight: 700; text-decoration: none; }
 .guide-toc a:hover { color: var(--coral); }
-.guide-content > section { scroll-margin-top: 25px; }
+.guide-content > section { scroll-margin-top: 100px; }
 .guide-content h2 { margin: 0 0 18px; font-family: Georgia, serif; font-size: clamp(2.1rem, 4vw, 3.5rem); line-height: 1.02; letter-spacing: -.035em; font-weight: 500; }
 .guide-content > section > p { color: var(--ink-soft); font-size: 1.03rem; }
 .guide-intro { margin-bottom: 56px; }
@@ -273,7 +301,9 @@ footer strong { color: white; font-size: 1.1rem; }
 .restaurant-guide-content > .booking-panel { margin-top: 74px; }
 
 @media (max-width: 850px) {
-  nav { display: none; }
+  .site-header { flex-wrap: wrap; gap: 9px 18px; padding-top: 11px; padding-bottom: 9px; }
+  nav { order: 3; width: 100%; display: flex; gap: 20px; overflow-x: auto; padding: 2px 0 4px; white-space: nowrap; scrollbar-width: none; }
+  nav::-webkit-scrollbar { display: none; }
   .hero, .about-section { grid-template-columns: 1fr; gap: 34px; }
   .hero { margin-top: 34px; min-height: auto; }
   .hero-copy { padding: 25px 0 0; }
@@ -297,6 +327,7 @@ footer strong { color: white; font-size: 1.1rem; }
   .guide-toc { position: static; display: flex; flex-wrap: wrap; gap: 5px 18px; }
   .guide-toc strong { width: 100%; }
   .restaurant-grid { grid-template-columns: 1fr 1fr; }
+  .quality-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
@@ -308,7 +339,7 @@ footer strong { color: white; font-size: 1.1rem; }
   .dining-heading { align-items: start; flex-direction: column; }
   .dining-actions { display: grid; }
   .results-toolbar { align-items: stretch; flex-direction: column; }
-  .toolbar-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .toolbar-actions { display: grid; grid-template-columns: 1fr; }
   .score-grid { grid-template-columns: 1fr; }
   .day-card { grid-template-columns: 1fr; gap: 9px; }
   .check-grid { grid-template-columns: 1fr; }
@@ -328,7 +359,7 @@ footer strong { color: white; font-size: 1.1rem; }
 }
 
 @media print {
-  .site-header, .hero, .trust-strip, #trip-form, .method-section, .about-section, .faq-section, footer, .toolbar-actions, .booking-panel, .section-heading { display: none !important; }
+  .site-header, .hero, .trust-strip, #trip-form, .method-section, .about-section, .faq-section, footer, .toolbar-actions, .booking-panel, .section-heading, .plan-status { display: none !important; }
   .planner-section { padding: 0; }
   .results { margin: 0; }
   .day-card { break-inside: avoid; }

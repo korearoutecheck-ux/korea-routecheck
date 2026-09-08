@@ -13,6 +13,10 @@ window.ROUTECHECK_CONFIG = {
       enabled: true,
       url: "https://www.viator.com/Seoul/d973-ttd?pid=P00317839&mcid=42383&medium=link"
     },
+    foodTours: {
+      enabled: true,
+      url: "https://www.viator.com/Seoul-tours/Food-Tours/d973-g6-c80?pid=P00317839&mcid=42383&medium=link"
+    },
     esim: {
       enabled: false,
       url: "https://www.airalo.com/south-korea-esim"

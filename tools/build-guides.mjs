@@ -6,7 +6,7 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const siteBase = "https://korearoutecheck-ux.github.io/korea-routecheck";
 const siteImage = `${siteBase}/assets/seoul-han-river.webp`;
 const publishedDate = "2026-09-01";
-const modifiedDate = "2026-09-07";
+const modifiedDate = "2026-09-08";
 
 const days = {
   palace: {
@@ -174,7 +174,7 @@ const guides = [
       ["Shopping priority", "Keep Myeongdong and Seongsu, then shorten the market stops instead of adding another retail district."],
       ["Rainy forecast", "Use the central or Seongsu day for the wettest weather and protect the palace morning for the clearest forecast."]
     ],
-    publishedDate: modifiedDate
+    publishedDate: "2026-09-07"
   },
   {
     days: 5,
@@ -234,6 +234,13 @@ const sources = [
   ["Seoul Metropolitan Government Hangang parks guide", "https://english.seoul.go.kr/service/amusement/hangang/hangang-parks/"]
 ];
 
+function routeLinks(route) {
+  return route.split(" → ").map((stop, index) => {
+    const url = `https://map.naver.com/p/search/${encodeURIComponent(`${stop} 서울`)}`;
+    return `<li><a href="${url}" target="_blank" rel="noopener" data-place-map="${stop}"><span>${index + 1}</span>${stop}</a></li>`;
+  }).join("");
+}
+
 function dayMarkup(day, index) {
   return `<section class="itinerary-day" id="day-${index + 1}">
     <div class="day-heading">
@@ -243,7 +250,7 @@ function dayMarkup(day, index) {
     <div class="time-grid">
       ${day.moments.map(([part, title, text]) => `<article><small>${part}</small><h4>${title}</h4><p>${text}</p></article>`).join("\n      ")}
     </div>
-    <p class="route-line"><strong>Route:</strong> ${day.route}</p>
+    <div class="route-line"><strong>Open each stop in Naver Maps</strong><ol class="stops" aria-label="Day ${index + 1} stop order">${routeLinks(day.route)}</ol></div>
     <p class="rain-note"><strong>Rain fallback:</strong> ${day.rain}</p>
   </section>`;
 }
@@ -299,16 +306,18 @@ function page(guide) {
   <meta property="og:type" content="article">
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
-  <link rel="stylesheet" href="styles.css?v=20260907">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20260907b">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page" data-guide="${guide.slug}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Korea RouteCheck home"><span class="brand-mark" aria-hidden="true">路</span><span>Korea RouteCheck</span></a>
     <nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#planning-guides">Travel guides</a></nav>
   </header>
 
-  <main id="top">
+  <main id="main-content">
     <section class="guide-hero">
       <div class="guide-hero-copy">
         <div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#guides">Seoul itineraries</a><span>/</span><span>${guide.days} days</span></div>
@@ -317,6 +326,7 @@ function page(guide) {
         <p class="hero-lede">${guide.lede}</p>
         <div class="hero-actions"><a class="button button-primary" href="index.html#planner">Customize this itinerary</a><span class="microcopy">Free · No sign-up</span></div>
         <ul class="trip-chips"><li>${guide.days} neighborhood days</li><li>Rain alternatives</li><li>First-visit friendly</li></ul>
+        <p class="editorial-note"><span>Locally reviewed · September 2026</span><a href="about.html">How recommendations are checked</a></p>
       </div>
       <figure class="guide-hero-media">
         <img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline stretching along the Han River" fetchpriority="high">
@@ -360,6 +370,7 @@ function page(guide) {
           <h2>Verify current details</h2>
           <p>Hours, closures, reservations and prices change. Check the source before visiting.</p>
           <ul class="source-list">${sources.map(([title, url]) => `<li><a href="${url}" target="_blank" rel="noopener">${title}</a></li>`).join("\n")}</ul>
+          <a class="editorial-link" href="about.html">Read our review process →</a>
         </section>
       </article>
     </div>
@@ -372,12 +383,12 @@ function page(guide) {
 
   <footer>
     <div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div>
-    <div class="footer-links"><a href="index.html#planner">Planner</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
+    <div class="footer-links"><a href="index.html#planner">Planner</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
     <p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p>
   </footer>
-  <script src="config.js?v=20260907"></script>
-  <script src="analytics.js?v=20260907"></script>
-  <script src="app.js?v=20260907"></script>
+  <script src="config.js?v=20260907b"></script>
+  <script src="analytics.js?v=20260907b"></script>
+  <script src="app.js?v=20260907b"></script>
 </body>
 </html>`;
 }

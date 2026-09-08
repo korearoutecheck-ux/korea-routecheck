@@ -5,18 +5,21 @@ Korea RouteCheck is a zero-API, static travel-planning web application. It build
 ## Current MVP
 
 - Generates 2–7 day Seoul plans.
-- Scores routes for coherence.
+- Groups each day around nearby parts of Seoul.
 - Adjusts the number of stops to the user's pace.
 - Provides rain alternatives.
 - Estimates a trip budget.
-- Copies or prints the itinerary.
+- Copies, shares or prints the itinerary.
 - Includes dedicated, search-optimized 2-, 3-, 4-, 5-, and 7-day Seoul guides.
 - Includes six high-intent planning guides for rain, solo travel, arrival day, airport transfers, neighborhoods, and day trips.
 - Includes a budget-based Seoul dining guide with nine verified Naver Maps listings.
 - Adds neighborhood-matched restaurant suggestions to generated itineraries.
+- Links every generated and ready-made itinerary stop to a Naver Maps search.
+- Restores the most recent itinerary on the same device and opens shared plans from compact URLs.
+- Includes local review notes, editorial standards, a corrections contact and a helpful 404 page.
 - Includes consent-based GA4 event tracking using the configured Korea RouteCheck property.
 - Includes an active Viator affiliate link; the Airalo placement remains disabled.
-- Stores no itinerary data and requires no account.
+- Requires no account or server-side itinerary storage.
 
 ## Launch checklist
 
@@ -31,6 +34,20 @@ Never invent tracking parameters. Use the links produced by the affiliate progra
 ## Local preview
 
 The app can be opened directly from `index.html`. Its initial production URL is configured as `https://korearoutecheck-ux.github.io/korea-routecheck/`.
+
+Run the page generators after changing their source data:
+
+```bash
+node tools/build-guides.mjs
+node tools/build-intent-guides.mjs
+node tools/build-dining-guide.mjs
+```
+
+Run the static-site audit before publishing:
+
+```bash
+node tools/audit-site.mjs
+```
 
 ## Next product increments
 

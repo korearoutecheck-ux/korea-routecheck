@@ -13,7 +13,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://korearoutecheck-ux.github.io/korea-routecheck/">
   <link rel="canonical" href="https://korearoutecheck-ux.github.io/korea-routecheck/">
-  <link rel="stylesheet" href="styles.css?v=20260907">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20260907b">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,8 +50,9 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Korea RouteCheck home">
+    <a class="brand" href="#main-content" aria-label="Korea RouteCheck home">
       <span class="brand-mark" aria-hidden="true">路</span>
       <span>Korea RouteCheck</span>
     </a>
@@ -62,12 +64,12 @@
     </nav>
   </header>
 
-  <main id="top">
+  <main id="main-content">
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Free Seoul itinerary planner</p>
-        <h1>Plan Seoul by neighborhood.</h1>
-        <p class="hero-lede">Build a route that matches your trip length, pace, interests, weather and budget.</p>
+        <h1>Build your Seoul itinerary.</h1>
+        <p class="hero-lede">Choose nearby neighborhoods that match your trip length, pace, interests, weather and budget.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#planner">Build my itinerary</a>
           <a class="text-link" href="#guides">Browse ready-made plans</a>
@@ -105,6 +107,12 @@
         <p class="eyebrow">Build your trip</p>
         <h2>Create your Seoul itinerary.</h2>
         <p>Choose the trip length, pace, interests and budget.</p>
+        <div class="planner-shortcuts" aria-label="Quick itinerary choices">
+          <button type="button" data-preset-days="2">2-day essentials</button>
+          <button type="button" data-preset-days="3">3-day first trip</button>
+          <button type="button" data-preset-days="5">5-day deeper trip</button>
+          <button type="button" id="restore-plan" hidden>Open my saved plan</button>
+        </div>
       </div>
 
       <form id="trip-form" class="planner-grid">
@@ -180,12 +188,14 @@
           </div>
           <div class="toolbar-actions">
             <button id="copy-plan" class="button button-secondary" type="button">Copy plan</button>
-            <button class="button button-secondary" type="button" onclick="window.print()">Print / save PDF</button>
+            <button id="share-plan" class="button button-secondary" type="button">Share link</button>
+            <button id="print-plan" class="button button-secondary" type="button">Print / save PDF</button>
           </div>
         </div>
+        <p class="plan-status" id="plan-status">Saved on this device. Share the link to open the same choices elsewhere.</p>
 
         <div class="score-grid">
-          <article><span id="route-score">—</span><small>Route fit</small></article>
+          <article><span id="route-score">—</span><small>Neighborhood days</small></article>
           <article><span id="daily-load">—</span><small>Pace</small></article>
           <article><span id="budget-total">—</span><small>Trip estimate</small></article>
         </div>
@@ -245,7 +255,7 @@
       </div>
       <div class="dining-actions">
         <a class="button button-secondary" href="where-to-eat-seoul-by-budget.html">See all restaurant details</a>
-        <a class="button button-primary" data-affiliate="experiences" href="#">Compare Seoul food tours and activities</a>
+        <a class="button button-primary" data-affiliate="foodTours" href="#">Compare Seoul food tours</a>
       </div>
       <p class="field-note">Menu prices and hours change. Check Naver Maps before visiting.</p>
     </section>
@@ -298,7 +308,7 @@
         <p class="eyebrow">About Korea RouteCheck</p>
         <h2>Built in Korea for first-time Seoul trips.</h2>
       </div>
-      <p>The planner draws on eight years of living in Korea. Its goal is simple: help travelers see more without spending the day on the subway.</p>
+      <div><p>The planner draws on eight years of living in Korea. Its goal is simple: help travelers see more without spending the day on the subway.</p><a class="about-link" href="about.html">How recommendations are checked →</a></div>
     </section>
 
     <section class="faq-section" id="faq">
@@ -315,12 +325,12 @@
 
   <footer>
     <div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div>
-    <div class="footer-links"><a href="#guides">Itineraries</a><a href="#where-to-eat">Where to eat</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
+    <div class="footer-links"><a href="#guides">Itineraries</a><a href="#where-to-eat">Where to eat</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
     <p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p>
   </footer>
 
-  <script src="config.js?v=20260907"></script>
-  <script src="analytics.js?v=20260907"></script>
-  <script src="app.js?v=20260907"></script>
+  <script src="config.js?v=20260907b"></script>
+  <script src="analytics.js?v=20260907b"></script>
+  <script src="app.js?v=20260907b"></script>
 </body>
 </html>
