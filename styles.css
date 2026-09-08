@@ -95,6 +95,9 @@ h1 em { color: var(--coral); font-weight: 500; }
 .guide-card p { color: var(--ink-soft); font-size: .93rem; }
 .guide-card strong { margin-top: auto; }
 .intent-guides-section { background: var(--cream); }
+.tour-guides-section { background: linear-gradient(180deg, #eff6f2 0%, #f8f4eb 100%); }
+.tour-guide-card { position: relative; overflow: hidden; }
+.tour-guide-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, var(--coral), var(--mint-deep)); }
 .planning-guide-grid { grid-template-columns: repeat(3, 1fr); }
 
 .planner-section { padding: 78px max(18px, calc((100% - 1180px) / 2)); background: var(--paper); }

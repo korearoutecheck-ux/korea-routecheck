@@ -307,14 +307,14 @@ function page(guide) {
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260907b">
+  <link rel="stylesheet" href="styles.css?v=20260908">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page" data-guide="${guide.slug}">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Korea RouteCheck home"><span class="brand-mark" aria-hidden="true">路</span><span>Korea RouteCheck</span></a>
-    <nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#planning-guides">Travel guides</a></nav>
+    <nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#tour-guides">Tours</a><a href="index.html#planning-guides">Travel guides</a></nav>
   </header>
 
   <main id="main-content">
@@ -362,7 +362,7 @@ function page(guide) {
 
         <aside class="booking-panel" id="affiliate-booking">
           <div><p class="eyebrow">Food and tours</p><h3>Add only what improves the day.</h3><p>Find a meal near the route, or compare guided activities when local context would help.</p></div>
-          <div class="booking-links"><a href="where-to-eat-seoul-by-budget.html">See restaurants by budget <span>→</span></a><a data-affiliate="experiences" href="#">Compare Seoul tours and activities <span>→</span></a></div>
+          <div class="booking-links"><a href="where-to-eat-seoul-by-budget.html">See restaurants by budget <span>→</span></a><a href="index.html#tour-guides">Choose a Seoul tour type <span>→</span></a><a data-affiliate="experiences" href="#">Browse all Seoul activities <span>→</span></a></div>
         </aside>
 
         <section class="source-section" id="sources">
@@ -383,12 +383,12 @@ function page(guide) {
 
   <footer>
     <div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div>
-    <div class="footer-links"><a href="index.html#planner">Planner</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
+    <div class="footer-links"><a href="index.html#planner">Planner</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="index.html#tour-guides">Tour guides</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
     <p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p>
   </footer>
-  <script src="config.js?v=20260907b"></script>
-  <script src="analytics.js?v=20260907b"></script>
-  <script src="app.js?v=20260907b"></script>
+  <script src="config.js?v=20260908"></script>
+  <script src="analytics.js?v=20260908"></script>
+  <script src="app.js?v=20260908"></script>
 </body>
 </html>`;
 }

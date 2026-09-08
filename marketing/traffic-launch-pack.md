@@ -100,3 +100,39 @@ Compare Suwon, the DMZ, Nami Island, the Garden of Morning Calm, Incheon and the
 3. Publish the airport or rainy-day post when it matches a real question, forecast or discussion.
 4. Use the Instagram carousel and Pinterest descriptions as evergreen discovery content.
 5. Add UTM parameters to each platform link after GA4 is active so traffic sources can be compared accurately.
+
+## Question-led posts for the new comparison guides
+
+Use these only when they directly answer a real question. Start with the useful comparison, disclose that you built the guide, and avoid dropping the same link into multiple groups.
+
+### Seoul food tours: market walk or cooking class?
+
+If the goal is to taste a lot of dishes and understand a market, a small-group market walk is usually the simpler choice. If you want something hands-on, a cooking class gives you more time with fewer dishes. I would check four things before paying: whether the tastings replace a meal, dietary substitutions, group size, and the exact end point.
+
+I made a fuller comparison here: https://korearoutecheck-ux.github.io/korea-routecheck/seoul-food-tours-guide.html?utm_source=community&utm_medium=referral&utm_campaign=tour_guides
+
+Disclosure: I built the guide, and it contains clearly labeled affiliate links.
+
+### What to check before choosing a DMZ tour
+
+The listings can look interchangeable, but the stops and return times vary. Check whether the route includes the Third Tunnel and Dora Observatory, how strenuous the tunnel portion is, which ID is required, and whether any optional bridge visit adds time. Do not assume a standard DMZ tour includes Panmunjeom/JSA.
+
+I organized the main differences here: https://korearoutecheck-ux.github.io/korea-routecheck/dmz-tours-from-seoul-guide.html?utm_source=community&utm_medium=referral&utm_campaign=tour_guides
+
+Disclosure: I built the guide, and it contains clearly labeled affiliate links.
+
+### A useful Seoul night-tour decision
+
+Choose the format before choosing the listing: food and markets for a social evening, a viewpoint route for city lights, a Han River option for a slower night, or a private tour when the finish location matters. Check the end point—getting back from the other side of the city late at night can undo the convenience of a guided tour.
+
+Full comparison: https://korearoutecheck-ux.github.io/korea-routecheck/seoul-night-tours-guide.html?utm_source=community&utm_medium=referral&utm_campaign=tour_guides
+
+Disclosure: I built the guide, and it contains clearly labeled affiliate links.
+
+### Is a Gyeongbokgung guide worth it?
+
+Self-guided works well if you mainly want the architecture and photos. A guide is more useful when you want court history, symbolism and help understanding what you are seeing. Before booking, check whether the tour covers only the palace or also Bukchon/Insadong, and whether admission or hanbok rental is actually included.
+
+I made a simple guide-versus-self-guided comparison: https://korearoutecheck-ux.github.io/korea-routecheck/gyeongbokgung-palace-tour-guide.html?utm_source=community&utm_medium=referral&utm_campaign=tour_guides
+
+Disclosure: I built the guide, and it contains clearly labeled affiliate links.

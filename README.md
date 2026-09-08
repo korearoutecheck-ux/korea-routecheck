@@ -12,6 +12,7 @@ Korea RouteCheck is a zero-API, static travel-planning web application. It build
 - Copies, shares or prints the itinerary.
 - Includes dedicated, search-optimized 2-, 3-, 4-, 5-, and 7-day Seoul guides.
 - Includes six high-intent planning guides for rain, solo travel, arrival day, airport transfers, neighborhoods, and day trips.
+- Includes four booking-intent comparison guides for Seoul food tours, DMZ tours, night tours, and Gyeongbokgung Palace tours.
 - Includes a budget-based Seoul dining guide with nine verified Naver Maps listings.
 - Adds neighborhood-matched restaurant suggestions to generated itineraries.
 - Links every generated and ready-made itinerary stop to a Naver Maps search.
@@ -41,12 +42,19 @@ Run the page generators after changing their source data:
 node tools/build-guides.mjs
 node tools/build-intent-guides.mjs
 node tools/build-dining-guide.mjs
+node tools/build-tour-guides.mjs
 ```
 
 Run the static-site audit before publishing:
 
 ```bash
 node tools/audit-site.mjs
+```
+
+After the deployed site serves the IndexNow verification file, notify participating search engines about every sitemap URL:
+
+```bash
+node tools/submit-indexnow.mjs
 ```
 
 ## Next product increments

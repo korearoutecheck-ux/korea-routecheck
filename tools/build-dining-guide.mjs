@@ -179,12 +179,12 @@ const html = `<!doctype html>
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260907b">
+  <link rel="stylesheet" href="styles.css?v=20260908">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page dining-guide" data-guide="where-to-eat-seoul-by-budget">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header"><a class="brand" href="index.html" aria-label="Korea RouteCheck home"><span class="brand-mark" aria-hidden="true">路</span><span>Korea RouteCheck</span></a><nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#planning-guides">Travel guides</a></nav></header>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="Korea RouteCheck home"><span class="brand-mark" aria-hidden="true">路</span><span>Korea RouteCheck</span></a><nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#tour-guides">Tours</a><a href="index.html#planning-guides">Travel guides</a></nav></header>
   <main id="main-content">
     <section class="guide-hero dining-guide-hero">
       <div class="guide-hero-copy"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Where to eat</span></div><p class="eyebrow">Checked September 2026</p><h1>Where to eat in Seoul by budget</h1><p class="hero-lede">Nine popular restaurants that fit naturally into a Seoul itinerary. Prices below are current menu guides, not guarantees.</p><div class="hero-actions"><a class="button button-primary" href="#budget">Browse restaurants</a><a class="text-link" href="index.html#planner">Build an itinerary</a></div><p class="editorial-note"><span>Locally reviewed · September 2026</span><a href="about.html">How recommendations are checked</a></p></div>
@@ -194,12 +194,12 @@ const html = `<!doctype html>
     <div class="restaurant-guide-content">
       <aside class="price-note"><strong>How prices work</strong><p>The ranges reflect menu listings checked in September 2026. A single bowl can be inexpensive even when shared dishes or barbecue cost much more.</p></aside>
       ${groups.map(group => `<section class="restaurant-group" id="${group.id}"><p class="eyebrow">${group.eyebrow}</p><h2>${group.title}</h2><p>${group.intro}</p><div class="restaurant-grid">${group.restaurants.map(restaurantCard).join("\n")}</div></section>`).join("\n")}
-      <aside class="booking-panel" id="affiliate-booking"><div><p class="eyebrow">Want more context?</p><h3>Compare Seoul food tours.</h3><p>A good tour can help with markets, ordering and local food history. Booking through an affiliate link may support Korea RouteCheck at no extra cost.</p></div><div class="booking-links"><a data-affiliate="foodTours" href="#">Compare Seoul food tours <span>→</span></a></div></aside>
+      <aside class="booking-panel" id="affiliate-booking"><div><p class="eyebrow">Want more context?</p><h3>Compare Seoul food tours.</h3><p>A good tour can help with markets, ordering and local food history. Booking through an affiliate link may support Korea RouteCheck at no extra cost.</p></div><div class="booking-links"><a href="seoul-food-tours-guide.html">How to choose a food tour <span>→</span></a><a data-affiliate="foodTours" href="#">Browse current food tours <span>→</span></a></div></aside>
       <section class="source-section" id="sources"><p class="eyebrow">Before visiting</p><h2>Check the listing again</h2><p>Restaurants can change prices, hours, branches and queue systems. Open the Naver Maps link before leaving, and make sure the name and branch match this guide.</p><a class="editorial-link" href="about.html">Read our review process →</a></section>
     </div>
   </main>
-  <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p></footer>
-  <script src="config.js?v=20260907b"></script><script src="analytics.js?v=20260907b"></script><script src="app.js?v=20260907b"></script>
+  <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#tour-guides">Tour guides</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p></footer>
+  <script src="config.js?v=20260908"></script><script src="analytics.js?v=20260908"></script><script src="app.js?v=20260908"></script>
 </body>
 </html>`;
 
