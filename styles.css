@@ -368,3 +368,42 @@ footer strong { color: white; font-size: 1.1rem; }
   .day-card { break-inside: avoid; }
   body { background: white; }
 }
+
+/* Keep the booking comparison close to the top of the food guide. */
+.food-guide .guide-hero { grid-template-columns: minmax(0, 1.6fr) minmax(0, .7fr); gap: 28px; margin-top: 26px; margin-bottom: 24px; }
+.food-guide .guide-hero h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.08; }
+.food-guide .guide-hero-copy { padding-top: 0; }
+.food-guide .hero-lede { font-size: 1.05rem; }
+.food-guide .guide-hero-media img { aspect-ratio: 16 / 9; border-radius: 18px; }
+.food-guide .trip-chips { display: none; }
+.tour-shortlist { width: min(1180px, calc(100% - 36px)); margin: 0 auto 36px; padding-top: 24px; border-top: 1px solid var(--line); scroll-margin-top: 115px; }
+.tour-shortlist h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin: 8px 0 12px; }
+.tour-shortlist > p { max-width: 900px; }
+.tour-shortlist .affiliate-note { color: var(--ink-soft); font-size: .9rem; }
+.tour-pick-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 22px; }
+.tour-pick { display: flex; flex-direction: column; min-width: 0; padding: 24px; border: 1px solid var(--line); border-top: 4px solid var(--coral); border-radius: 14px; background: white; }
+.tour-pick h3 { font-family: Georgia, serif; font-size: 1.5rem; line-height: 1.2; margin: 12px 0; }
+.tour-pick .tour-fit { color: var(--coral); font-size: .9rem; font-weight: 800; margin: 0; }
+.tour-meta { font-weight: 700; font-size: .95rem; }
+.tour-pick dl { margin: 12px 0 0; }
+.tour-pick dt { font-weight: 800; font-size: .9rem; margin: 10px 0 4px; }
+.tour-pick dd { margin: 0; color: var(--ink-soft); }
+.tour-pick > p:not(.tour-fit):not(.tour-meta):not(.tour-listing) { color: var(--ink-soft); }
+.tour-pick .button { margin-top: auto; min-height: 46px; text-align: center; }
+.tour-pick .tour-listing { font-size: .875rem; color: var(--ink-soft); margin-bottom: 0; }
+.independent-option { margin-top: 22px; }
+.analytics-consent a { color: white; text-decoration: underline; }
+.analytics-consent p { font-size: .875rem; }
+.analytics-consent-actions { flex-wrap: wrap; }
+@media (max-width: 850px) {
+  .food-guide .guide-hero { grid-template-columns: 1fr; gap: 14px; }
+  .food-guide .guide-hero-media img { height: 120px; object-fit: cover; }
+  .food-guide .guide-hero-media figcaption { font-size: .8rem; }
+  .tour-pick-grid { grid-template-columns: 1fr; }
+  .tour-pick { padding: 20px; }
+}
+@media print {
+  .tour-pick-grid { grid-template-columns: 1fr; }
+  .tour-pick { break-inside: avoid; }
+  .analytics-consent { display: none !important; }
+}

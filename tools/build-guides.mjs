@@ -307,7 +307,7 @@ function page(guide) {
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260908">
+  <link rel="stylesheet" href="styles.css?v=20260920">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page" data-guide="${guide.slug}">
@@ -386,9 +386,9 @@ function page(guide) {
     <div class="footer-links"><a href="index.html#planner">Planner</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="index.html#tour-guides">Tour guides</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div>
     <p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p>
   </footer>
-  <script src="config.js?v=20260908"></script>
-  <script src="analytics.js?v=20260908"></script>
-  <script src="app.js?v=20260908"></script>
+  <script src="config.js?v=20260920"></script>
+  <script src="analytics.js?v=20260920"></script>
+  <script src="app.js?v=20260920"></script>
 </body>
 </html>`;
 }

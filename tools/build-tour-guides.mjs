@@ -1,4 +1,5 @@
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
+import { runInNewContext } from "node:vm";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,16 +8,60 @@ const siteBase = "https://korearoutecheck-ux.github.io/korea-routecheck";
 const siteImage = `${siteBase}/assets/seoul-han-river.webp`;
 const publishedDate = "2026-09-08";
 const modifiedDate = "2026-09-08";
+const configContext = { window: {} };
+runInNewContext(await readFile(join(root, "config.js"), "utf8"), configContext);
+const affiliateLinks = configContext.window.ROUTECHECK_CONFIG.affiliateLinks;
+
+const foodTourPicks = [
+  {
+    key: "foodMarket", fit: "Food included", title: "Downtown food & market tour",
+    listing: "Downtown Seoul Guided Food & Market Tour with 8+ Local Tastings",
+    duration: "About 3 hours", format: "Small group",
+    included: "Food tastings and lunch are listed as included.",
+    route: "Starts on Jong-ro; ends in Insadong.",
+    check: "A useful first food tour if you want one upfront food budget. Confirm dietary substitutions and the meeting instructions."
+  },
+  {
+    key: "foodAlleys", fit: "Longer food & drink walk", title: "Drinking & eating through Seoul's alleys",
+    listing: "Drinking and Eating through the Alleys of Seoul",
+    duration: "About 5 hours", format: "Up to 11 travelers",
+    included: "Food and most drinks cost extra; the guide lists a final round of drinks as included.",
+    route: "Jongno 5-ga to the Insadong area.",
+    check: "Choose this for a longer social outing. Compare the tour fee plus food and drinks against all-inclusive options."
+  },
+  {
+    key: "foodPrivate", fit: "Your own group", title: "Private Seoul tour with 10 tastings",
+    listing: "The Award-Winning PRIVATE Food Tour of Seoul: The 10 Tastings",
+    duration: "About 3 hours", format: "Private guide",
+    included: "Ten food and drink tastings; vegetarian alternatives by arrangement.",
+    route: "Meets at Hoehyeon, by Namdaemun Market.",
+    check: "Consider this if your group wants more time for questions. Message the host about dietary needs before paying."
+  }
+];
+
+function foodShortlist() {
+  return `<section class="tour-shortlist" id="shortlist" aria-labelledby="shortlist-title">
+    <p class="eyebrow">Start with these three options</p><h2 id="shortlist-title">Choose by what is included.</h2>
+    <p>Compare a meal-inclusive walk, a longer food-and-drink outing, or a private tour. These are listing-based comparisons, not firsthand tour reviews. Details checked September 20, 2026.</p>
+    <p class="affiliate-note">Affiliate links: we may earn a commission if you book, at no extra cost to you. Prices and availability depend on your date and group.</p>
+    <div class="tour-pick-grid">${foodTourPicks.map(tour => `<article class="tour-pick">
+      <p class="tour-fit">${tour.fit}</p><h3>${tour.title}</h3><p class="tour-meta">${tour.duration} · ${tour.format}</p>
+      <dl><dt>Food and drinks</dt><dd>${tour.included}</dd><dt>Where it fits</dt><dd>${tour.route}</dd></dl>
+      <p>${tour.check}</p><a class="button button-primary" data-affiliate="${tour.key}" data-placement="food_shortlist" href="${affiliateLinks[tour.key].url.replaceAll("&", "&amp;")}" target="_blank" rel="sponsored noopener" aria-label="Check dates and price: ${tour.title}">Check dates & price</a>
+      <p class="tour-listing">On Viator: ${tour.listing}</p></article>`).join("\n")}</div>
+    <p class="independent-option">Prefer to explore on your own? Use our <a href="where-to-eat-seoul-by-budget.html">Seoul restaurants by budget</a> guide. A paid tour is optional.</p>
+  </section>`;
+}
 
 const guides = [
   {
     slug: "seoul-food-tours-guide",
     label: "Seoul food tours",
     kicker: "Markets, tastings and cooking classes",
-    title: "Seoul food tours: how to choose the right one",
-    seoTitle: "Seoul Food Tours: How to Choose the Right One",
-    description: "Compare Seoul food tours, market tastings, cooking classes and private food experiences by neighborhood, timing, inclusions and dietary fit.",
-    lede: "The best choice depends less on the number of tastings and more on where the tour goes, what is included and how it fits the rest of the day.",
+    title: "Seoul food tours: compare three options",
+    seoTitle: "Seoul Food Tours: 3 Options, Inclusions & Booking Tips",
+    description: "Compare three Seoul food tours by duration, included food, meeting area and group type. See direct booking links and an independent dining alternative.",
+    lede: "Find a food tour that fits your day—and see which tours include the meal before comparing prices.",
     chips: ["Market tours", "Cooking classes", "Private options"],
     facts: [["Best first taste", "Gwangjang market tour"], ["Most hands-on", "Cooking class"], ["Time to allow", "About 2–4 hours"], ["Check closely", "Food and dietary fit"]],
     note: "Do not choose from photos alone. Confirm how many tastings are included, whether they replace a full meal, the group size and the exact meeting point.",
@@ -184,6 +229,8 @@ function relatedMarkup(currentSlug) {
 }
 
 function page(guide) {
+  const isFood = guide.slug === "seoul-food-tours-guide";
+  const reviewedDate = isFood ? "2026-09-20" : modifiedDate;
   const canonical = `${siteBase}/${guide.slug}.html`;
   const schema = {
     "@context": "https://schema.org",
@@ -191,7 +238,7 @@ function page(guide) {
       {
         "@id": `${canonical}#article`, "@type": "Article", headline: guide.title,
         description: guide.description, image: siteImage, datePublished: publishedDate,
-        dateModified: modifiedDate, inLanguage: "en",
+        dateModified: reviewedDate, inLanguage: "en",
         mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
         author: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
         publisher: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
@@ -223,26 +270,27 @@ function page(guide) {
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260908">
+  <link rel="stylesheet" href="styles.css?v=20260920">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
-<body class="guide-page" data-guide="${guide.slug}">
+<body class="guide-page${isFood ? " food-guide" : ""}" data-guide="${guide.slug}">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header"><a class="brand" href="index.html" aria-label="Korea RouteCheck home"><span class="brand-mark" aria-hidden="true">路</span><span>Korea RouteCheck</span></a><nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#tour-guides">Tours</a><a href="index.html#planning-guides">Travel guides</a></nav></header>
   <main id="main-content">
-    <section class="guide-hero"><div class="guide-hero-copy"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#tour-guides">Tour guides</a><span>/</span><span>${guide.label}</span></div><p class="eyebrow">${guide.kicker}</p><h1>${guide.title}</h1><p class="hero-lede">${guide.lede}</p><div class="hero-actions"><a class="button button-primary" href="#${guide.sections[0].id}">Compare options</a><a class="text-link" href="index.html#planner">Build an itinerary</a></div><ul class="trip-chips">${guide.chips.map(chip => `<li>${chip}</li>`).join("")}</ul><p class="editorial-note"><span>Locally reviewed · September 2026</span><a href="about.html">How recommendations are checked</a></p></div><figure class="guide-hero-media"><img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline stretching along the Han River" fetchpriority="high"><figcaption>Seoul across the Han River. Public-domain image via <a href="https://commons.wikimedia.org/wiki/File:Han_River_Seoul_skyline_Pixabay_1214950.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</figcaption></figure></section>
+    <section class="guide-hero"><div class="guide-hero-copy"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#tour-guides">Tour guides</a><span>/</span><span>${guide.label}</span></div><p class="eyebrow">${guide.kicker}</p><h1>${guide.title}</h1><p class="hero-lede">${guide.lede}</p><div class="hero-actions"><a class="button button-primary" href="#${isFood ? "shortlist" : guide.sections[0].id}">Compare options</a><a class="text-link" href="index.html#planner">Build an itinerary</a></div><ul class="trip-chips">${guide.chips.map(chip => `<li>${chip}</li>`).join("")}</ul><p class="editorial-note"><span>Locally reviewed · September 2026</span><a href="about.html">How recommendations are checked</a></p></div><figure class="guide-hero-media"><img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline stretching along the Han River" fetchpriority="high"><figcaption>Seoul across the Han River. Public-domain image via <a href="https://commons.wikimedia.org/wiki/File:Han_River_Seoul_skyline_Pixabay_1214950.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</figcaption></figure></section>
+    ${isFood ? foodShortlist() : ""}
     <section class="guide-facts" aria-label="Guide summary">${guide.facts.map(([label, value]) => `<article><small>${label}</small><strong>${value}</strong></article>`).join("\n")}</section>
-    <div class="guide-layout"><aside class="guide-toc" aria-label="On this page"><strong>On this page</strong>${guide.sections.map(section => `<a href="#${section.id}">${section.title}</a>`).join("")}<a href="#affiliate-booking">Compare bookings</a><a href="#sources">Sources</a></aside><article class="guide-content"><div class="guide-callout"><strong>Keep in mind</strong><p>${guide.note}</p></div>${guide.sections.map(sectionMarkup).join("\n")}
-      <aside class="booking-panel" id="affiliate-booking"><div><p class="eyebrow">Compare current options</p><h3>${guide.affiliateLabel}.</h3><p>Check the exact itinerary, inclusions, recent reviews and cancellation terms before booking. Affiliate bookings may support Korea RouteCheck at no extra cost.</p></div><div class="booking-links"><a data-affiliate="${guide.affiliateKey}" href="#">${guide.affiliateLabel} <span>→</span></a></div></aside>
+    <div class="guide-layout"><aside class="guide-toc" aria-label="On this page"><strong>On this page</strong>${isFood ? '<a href="#shortlist">Three tours compared</a>' : ""}${guide.sections.map(section => `<a href="#${section.id}">${section.title}</a>`).join("")}<a href="#affiliate-booking">Compare bookings</a><a href="#sources">Sources</a></aside><article class="guide-content"><div class="guide-callout"><strong>Keep in mind</strong><p>${guide.note}</p></div>${guide.sections.map(sectionMarkup).join("\n")}
+      <aside class="booking-panel" id="affiliate-booking"><div><p class="eyebrow">Compare current options</p><h3>${guide.affiliateLabel}.</h3><p>Check the exact itinerary, inclusions, recent reviews and cancellation terms before booking. Affiliate bookings may support Korea RouteCheck at no extra cost.</p></div><div class="booking-links"><a data-affiliate="${guide.affiliateKey}" href="${affiliateLinks[guide.affiliateKey].url.replaceAll("&", "&amp;")}" target="_blank" rel="sponsored noopener">${guide.affiliateLabel} <span>→</span></a></div></aside>
       <section class="source-section" id="sources"><p class="eyebrow">Research sources</p><h2>Check current details</h2><p>Availability, access, prices and operator terms change. Recheck the original source before paying.</p><ul class="source-list">${guide.sources.map(([title, url]) => `<li><a href="${url}" target="_blank" rel="noopener">${title}</a></li>`).join("\n")}</ul><a class="editorial-link" href="about.html">Read our review process →</a></section>
     </article></div>
     <section class="guide-switcher" id="related"><div class="section-heading"><p class="eyebrow">More comparisons</p><h2>Other Seoul tour guides</h2><p>Choose the experience that fits the itinerary.</p></div><div class="guide-card-grid planning-guide-grid">${relatedMarkup(guide.slug)}</div></section>
   </main>
   <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#tour-guides">Tour guides</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p></footer>
-  <script src="config.js?v=20260908"></script><script src="analytics.js?v=20260908"></script><script src="app.js?v=20260908"></script>
+  <script src="config.js?v=20260920"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260920"></script>
 </body>
 </html>`;
 }
 
-for (const guide of guides) await writeFile(join(root, `${guide.slug}.html`), page(guide), "utf8");
+for (const guide of guides) await writeFile(join(root, `${guide.slug}.html`), page(guide).replace(/^[ \t]+$/gm, ""), "utf8");
 console.log(`Built ${guides.length} commercial-intent tour guides.`);

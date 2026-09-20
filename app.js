@@ -386,6 +386,9 @@ function applyAffiliateLinks() {
       link.addEventListener("click", () => {
         window.routecheckTrack?.("affiliate_click", {
           affiliate_partner: key,
+          affiliate_provider: "viator",
+          affiliate_product: item.productId || "category",
+          affiliate_placement: link.dataset.placement || "page",
           affiliate_context: link.textContent.trim().replace(/\s+/g, " ").slice(0, 80),
           page_path: window.location.pathname
         });
