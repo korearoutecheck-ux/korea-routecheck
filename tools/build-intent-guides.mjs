@@ -273,13 +273,13 @@ function page(guide) {
   <meta property="og:type" content="article">
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=20260920-visual1">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page" data-guide="${guide.slug}">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header"><a class="brand" href="index.html" aria-label="Korea RouteCheck home"><img class="brand-mark" src="favicon.svg" width="44" height="44" alt=""><span>Korea RouteCheck</span></a><nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#tour-guides">Tours</a><a href="#related">Travel guides</a></nav></header>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="Korea RouteCheck home"><img class="brand-mark" src="favicon.svg?v=krc1" width="44" height="44" alt=""><span>Korea RouteCheck</span></a><nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#tour-guides">Tours</a><a href="#related">Travel guides</a></nav></header>
   <main id="main-content">
     <section class="guide-hero"><div class="guide-hero-copy"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#planning-guides">Travel guides</a><span>/</span><span>${guide.label}</span></div><p class="eyebrow">${guide.kicker}</p><h1>${guide.title}</h1><p class="hero-lede">${guide.lede}</p><div class="hero-actions"><a class="button button-primary" href="index.html#planner">Build a Seoul itinerary</a><span class="microcopy">Free · No sign-up</span></div><ul class="trip-chips">${guide.chips.map(chip => `<li>${chip}</li>`).join("")}</ul><p class="editorial-note"><span>Locally reviewed · September 2026</span><a href="about.html">How recommendations are checked</a></p></div>${imageCredit}</section>
     <section class="guide-facts" aria-label="Guide summary">${guide.facts.map(([label, value]) => `<article><small>${label}</small><strong>${value}</strong></article>`).join("\n")}</section>
