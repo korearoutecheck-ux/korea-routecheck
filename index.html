@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://korearoutecheck-ux.github.io/korea-routecheck/">
   <link rel="canonical" href="https://korearoutecheck-ux.github.io/korea-routecheck/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260920">
+  <link rel="stylesheet" href="styles.css?v=20260920-visual1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,12 +49,12 @@
   }
   </script>
 </head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="#main-content" aria-label="Korea RouteCheck home">
-      <span class="brand-mark" aria-hidden="true">路</span>
-      <span>Korea RouteCheck</span>
+      <img class="brand-mark" src="favicon.svg" width="44" height="44" alt="">
+      <span>Korea Route Check</span>
     </a>
     <nav aria-label="Primary navigation">
       <a href="#planner">Planner</a>
@@ -68,32 +68,35 @@
   <main id="main-content">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Free Seoul itinerary planner</p>
-        <h1>Build your Seoul itinerary.</h1>
-        <p class="hero-lede">Choose nearby neighborhoods that match your trip length, pace, interests, weather and budget.</p>
+        <p class="eyebrow">Seoul, one neighborhood at a time</p>
+        <h1>A better plan<br>for Seoul.</h1>
+        <p class="hero-lede">Less time planning. More time exploring. Find your route, your next meal, or a tour worth making time for.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#planner">Build my itinerary</a>
-          <a class="text-link" href="#guides">Browse ready-made plans</a>
+          <a class="text-link" href="#tour-guides">Find a tour ↗</a>
         </div>
-        <p class="microcopy">Free · No sign-up · Works on mobile</p>
+        <div class="hero-presets" aria-label="Start a quick itinerary"><span>How long have you got?</span><button type="button" data-preset-days="2">2 days →</button><button type="button" data-preset-days="3">3 days →</button><button type="button" data-preset-days="5">5 days →</button></div>
+        <p class="microcopy">Free itineraries · No sign-up</p>
       </div>
       <div class="hero-visual">
         <img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline along the Han River" fetchpriority="high">
-        <div class="route-card" aria-label="Example Seoul route">
-          <div class="route-card-top">
-            <span>Sample day</span>
-            <span class="route-score">Short transfers</span>
-          </div>
-          <h2>Palaces to Ikseon-dong</h2>
-          <ol class="mini-route">
-            <li><span>09:30</span> Gyeongbokgung Palace</li>
-            <li><span>12:00</span> Lunch in Seochon</li>
-            <li><span>14:00</span> Insadong</li>
-            <li><span>18:00</span> Ikseon-dong</li>
-          </ol>
-          <p>Four nearby stops. One easy route.</p>
-        </div>
+        <a class="photo-caption" href="seoul-3-day-itinerary.html"><span>YOUR FIRST TIME IN SEOUL?</span><strong>Start with three good days ↗</strong></a>
       </div>
+    </section>
+
+    <section class="guides-section tour-guides-section" id="tour-guides">
+      <div class="section-heading">
+        <p class="eyebrow">Bookable experiences</p>
+        <h2>Choose the right Seoul tour.</h2>
+        <p>Compare formats, timing and inclusions before you book.</p>
+      </div>
+      <div class="guide-card-grid planning-guide-grid">
+        <a class="guide-card tour-guide-card" href="seoul-food-tours-guide.html"><span>Food tours</span><h3>Markets or cooking?</h3><p>Choose by neighborhood, group size and what is included.</p><strong>Compare food tours →</strong></a>
+        <a class="guide-card tour-guide-card" href="dmz-tours-from-seoul-guide.html"><span>DMZ tours</span><h3>Check the route first</h3><p>Compare stops, timing, access rules and physical demands.</p><strong>Compare DMZ tours →</strong></a>
+        <a class="guide-card tour-guide-card" href="seoul-night-tours-guide.html"><span>Night tours</span><h3>Plan a better evening</h3><p>Compare food walks, viewpoints, cruises and private tours.</p><strong>Compare night tours →</strong></a>
+        <a class="guide-card tour-guide-card" href="gyeongbokgung-palace-tour-guide.html"><span>Palace tours</span><h3>Guide or self-guided?</h3><p>Decide how much historical context and structure you want.</p><strong>Compare palace tours →</strong></a>
+      </div>
+      <p class="field-note">These guides explain what to compare. Affiliate links are labeled, and bookings may support the site at no extra cost.</p>
     </section>
 
     <section class="trust-strip" aria-label="Product benefits">
@@ -261,20 +264,7 @@
       <p class="field-note">Menu prices and hours change. Check Naver Maps before visiting.</p>
     </section>
 
-    <section class="guides-section tour-guides-section" id="tour-guides">
-      <div class="section-heading">
-        <p class="eyebrow">Bookable experiences</p>
-        <h2>Choose the right Seoul tour.</h2>
-        <p>Compare formats, timing and inclusions before you book.</p>
-      </div>
-      <div class="guide-card-grid planning-guide-grid">
-        <a class="guide-card tour-guide-card" href="seoul-food-tours-guide.html"><span>Food tours</span><h3>Markets or cooking?</h3><p>Choose by neighborhood, group size and what is included.</p><strong>Compare food tours →</strong></a>
-        <a class="guide-card tour-guide-card" href="dmz-tours-from-seoul-guide.html"><span>DMZ tours</span><h3>Check the route first</h3><p>Compare stops, timing, access rules and physical demands.</p><strong>Compare DMZ tours →</strong></a>
-        <a class="guide-card tour-guide-card" href="seoul-night-tours-guide.html"><span>Night tours</span><h3>Plan a better evening</h3><p>Compare food walks, viewpoints, cruises and private tours.</p><strong>Compare night tours →</strong></a>
-        <a class="guide-card tour-guide-card" href="gyeongbokgung-palace-tour-guide.html"><span>Palace tours</span><h3>Guide or self-guided?</h3><p>Decide how much historical context and structure you want.</p><strong>Compare palace tours →</strong></a>
-      </div>
-      <p class="field-note">These guides explain what to compare. Affiliate links are labeled, and bookings may support the site at no extra cost.</p>
-    </section>
+
 
     <section class="guides-section" id="guides">
       <div class="section-heading">
