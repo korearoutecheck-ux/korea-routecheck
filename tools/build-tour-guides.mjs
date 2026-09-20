@@ -63,7 +63,7 @@ const guides = [
     description: "Compare three Seoul food tours by duration, included food, meeting area and group type. See direct booking links and an independent dining alternative.",
     lede: "Find a food tour that fits your day—and see which tours include the meal before comparing prices.",
     chips: ["Market tours", "Cooking classes", "Private options"],
-    facts: [["Best first taste", "Gwangjang market tour"], ["Most hands-on", "Cooking class"], ["Time to allow", "About 2–4 hours"], ["Check closely", "Food and dietary fit"]],
+    facts: [["Best first taste", "Gwangjang market tour"], ["Most hands-on", "Cooking class"], ["Time to allow", "About 3–5 hours"], ["Check closely", "Food and dietary fit"]],
     note: "Do not choose from photos alone. Confirm how many tastings are included, whether they replace a full meal, the group size and the exact meeting point.",
     sections: [
       { id: "compare", eyebrow: "Tour formats", title: "Four common Seoul food experiences", intro: "Each format solves a different travel problem.", cards: [
@@ -270,7 +270,7 @@ function page(guide) {
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260920">
+  <link rel="stylesheet" href="styles.css?v=20260920-2">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page${isFood ? " food-guide" : ""}" data-guide="${guide.slug}">

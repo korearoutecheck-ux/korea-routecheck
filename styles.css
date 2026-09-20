@@ -374,7 +374,7 @@ footer strong { color: white; font-size: 1.1rem; }
 .food-guide .guide-hero h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.08; }
 .food-guide .guide-hero-copy { padding-top: 0; }
 .food-guide .hero-lede { font-size: 1.05rem; }
-.food-guide .guide-hero-media img { aspect-ratio: 16 / 9; border-radius: 18px; }
+.food-guide .guide-hero-media img { height: auto; aspect-ratio: 16 / 9; border-radius: 18px; }
 .food-guide .trip-chips { display: none; }
 .tour-shortlist { width: min(1180px, calc(100% - 36px)); margin: 0 auto 36px; padding-top: 24px; border-top: 1px solid var(--line); scroll-margin-top: 115px; }
 .tour-shortlist h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin: 8px 0 12px; }
