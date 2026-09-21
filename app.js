@@ -501,6 +501,42 @@ document.addEventListener("click", event => {
 
 applyAffiliateLinks();
 
+const tourFinder = document.querySelector("#tour-finder");
+if (tourFinder) {
+  const interest = document.querySelector("#tour-interest");
+  const time = document.querySelector("#tour-time");
+  const cards = [...document.querySelectorAll("[data-tour-interest]")];
+  const count = document.querySelector("#tour-result-count");
+  const empty = document.querySelector("#tour-no-results");
+  function filterTours(track = false) {
+    let matches = 0;
+    cards.forEach(card => {
+      const show = (interest.value === "all" || card.dataset.tourInterest === interest.value)
+        && (time.value === "all" || card.dataset.tourTime === time.value);
+      card.hidden = !show;
+      if (show) matches++;
+    });
+    count.textContent = `${matches} ${matches === 1 ? "option matches" : "options match"} your choices.`;
+    empty.hidden = matches > 0;
+    if (track) window.routecheckTrack?.("tour_finder_filter", {
+      tour_interest: interest.value,
+      tour_time: time.value,
+      result_count: matches
+    });
+  }
+  tourFinder.hidden = false;
+  count.hidden = false;
+  tourFinder.addEventListener("submit", event => event.preventDefault());
+  tourFinder.addEventListener("change", () => filterTours(true));
+  tourFinder.addEventListener("reset", event => {
+    event.preventDefault();
+    interest.value = "all";
+    time.value = "all";
+    filterTours(true);
+  });
+  filterTours();
+}
+
 const guideActions = document.querySelector(".guide-hero .hero-actions");
 if (document.body.dataset.guide && guideActions) {
   const shareGuide = document.createElement("button");

@@ -490,6 +490,64 @@ fieldset { background: #dce6e3; }
 }
 
 /* Clear booking paths and practical travel tools. */
+/* Discovery guides and a crawlable tour finder. */
+.discovery-hero, .discovery-content, .discovery-related { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+.discovery-hero { padding: 34px 0 32px; }
+.discovery-hero h1 { max-width: 950px; font-size: clamp(2.6rem, 4.5vw, 4.3rem); line-height: 1.04; }
+.discovery-hero .hero-lede { max-width: 780px; }
+.discovery-hero .editorial-note { margin-bottom: 0; }
+.discovery-content { padding-bottom: 48px; }
+.reading-section { margin: 0 0 44px; }
+.reading-section h2, .discovery-related h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.12; margin-bottom: 16px; }
+.reading-section h3 { font-size: 1.65rem; margin: 25px 0 10px; }
+.reading-column { max-width: 850px; margin: 42px auto 0; }
+.reading-column p, .reader-checklist { font-size: 1.08rem; line-height: 1.75; color: var(--ink-soft); }
+.reading-column a { text-underline-offset: 4px; }
+.reader-checklist { padding-left: 24px; }
+.reader-checklist li { margin-bottom: 16px; padding-left: 5px; }
+.reader-checklist strong { color: var(--ink); }
+.table-scroll { overflow-x: auto; margin: 22px 0; border: 1px solid var(--line); border-radius: 10px; }
+.comparison-table { width: 100%; border-collapse: collapse; background: var(--paper); }
+.comparison-table caption { padding: 15px; text-align: left; font-weight: 700; background: var(--mint); }
+.comparison-table th, .comparison-table td { padding: 15px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); min-width: 145px; }
+.comparison-table thead { background: #d4e1db; }
+.reading-column .source-inline, .affiliate-note { font-size: .9rem; color: var(--ink-soft); }
+.answer-panel { padding: 23px; background: var(--mint); border-radius: 12px; }
+.answer-panel > strong { font-size: 1.25rem; }
+.answer-panel p { margin: 8px 0 0; }
+.answer-panel .hero-actions { margin-top: 18px; }
+.tour-finder-controls { display: grid; grid-template-columns: 1fr 1fr auto; gap: 20px; align-items: end; padding: 22px; margin: 22px 0 14px; background: var(--mint); border-radius: 12px; }
+.tour-finder-controls label { margin: 0; color: var(--ink); font-size: .95rem; }
+.tour-finder-controls .button { min-height: 46px; }
+#tour-result-count { color: var(--ink-soft); font-size: .95rem; }
+.finder-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 22px 0; }
+.finder-card { display: flex; flex-direction: column; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--mint-deep); border-radius: 12px; }
+.finder-card h3 { margin: 0 0 12px; font-size: 1.9rem; }
+.finder-card h3 a { text-decoration: none; }
+.finder-card p { color: var(--ink-soft); }
+.finder-card .eyebrow { color: var(--coral); }
+.finder-check { font-size: .94rem; padding-top: 15px; border-top: 1px solid var(--line); }
+.finder-actions { display: grid; gap: 18px; margin-top: auto; }
+.discovery-related { padding: 0 0 60px; }
+.discovery-related .guide-card { min-height: 190px; }
+.tour-discovery-links { display: flex; flex-wrap: wrap; gap: 16px 26px; align-items: center; margin-top: 22px; }
+.context-links { margin: 24px 0; padding: 20px; border-left: 3px solid var(--mint-deep); background: var(--mint); }
+.context-links p:last-child { margin-bottom: 0; }
+@media (max-width: 850px) {
+  .finder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tour-finder-controls { grid-template-columns: 1fr 1fr; }
+  .tour-finder-controls .button { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .finder-grid, .tour-finder-controls { grid-template-columns: 1fr; }
+  .discovery-hero { padding-top: 24px; }
+  .discovery-hero h1 { font-size: 2.8rem; }
+  .discovery-hero .hero-actions { gap: 16px; }
+  .tour-discovery-links { align-items: stretch; flex-direction: column; }
+  .tour-discovery-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .reading-column p, .reader-checklist { font-size: 1rem; }
+}
+@media print { .tour-finder-controls { display: none !important; } .finder-card { break-inside: avoid; } }
 [hidden] { display: none !important; }
 main [id] { scroll-margin-top: 100px; }
 .saved-plan-link { margin-top: 14px; padding: 8px 0; border: 0; background: transparent; color: #ffb16f; font: inherit; font-weight: 700; text-align: left; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }

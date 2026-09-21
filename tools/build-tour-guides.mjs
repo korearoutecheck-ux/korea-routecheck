@@ -50,6 +50,7 @@ function foodShortlist() {
       <p>${tour.check}</p><a class="button button-primary" data-affiliate="${tour.key}" data-placement="food_shortlist" href="${affiliateLinks[tour.key].url.replaceAll("&", "&amp;")}" target="_blank" rel="sponsored noopener" aria-label="Check dates and price: ${tour.title}">Check dates & price</a>
       <p class="tour-listing">On Viator: ${tour.listing}</p></article>`).join("\n")}</div>
     <p class="independent-option">Prefer to explore on your own? Use our <a href="where-to-eat-seoul-by-budget.html">Seoul restaurants by budget</a> guide. A paid tour is optional.</p>
+    <aside class="context-links"><p><strong>Deciding what kind of food experience to book?</strong> Compare <a href="seoul-cooking-classes.html">three Seoul cooking classes</a> if you want to learn a dish. For a flexible tasting stop, use our <a href="gwangjang-market-food-guide.html">Gwangjang Market food guide</a>.</p></aside>
   </section>`;
 }
 
@@ -238,7 +239,7 @@ function page(guide) {
       {
         "@id": `${canonical}#article`, "@type": "Article", headline: guide.title,
         description: guide.description, image: siteImage, datePublished: publishedDate,
-        dateModified: reviewedDate, inLanguage: "en",
+        dateModified: "2026-09-21", inLanguage: "en",
         mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
         author: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
         publisher: { "@type": "Organization", name: "Korea RouteCheck", url: `${siteBase}/` },
@@ -248,7 +249,7 @@ function page(guide) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${siteBase}/` },
-          { "@type": "ListItem", position: 2, name: "Seoul tour guides", item: `${siteBase}/#tour-guides` },
+          { "@type": "ListItem", position: 2, name: "Seoul tour guides", item: `${siteBase}/seoul-tours.html` },
           { "@type": "ListItem", position: 3, name: guide.label, item: canonical }
         ]
       }
@@ -275,14 +276,14 @@ function page(guide) {
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260921-flow1">
+  <link rel="stylesheet" href="styles.css?v=20260921-seo1">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page${isFood ? " food-guide" : ""}" data-guide="${guide.slug}">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header"><a class="brand" href="index.html" aria-label="Korea RouteCheck home"><img class="brand-mark" src="favicon.svg?v=krc1" width="44" height="44" alt=""><span>Korea RouteCheck</span></a><nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="index.html#tour-guides">Tours</a><a href="index.html#planning-guides">Travel guides</a></nav></header>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="Korea RouteCheck home"><img class="brand-mark" src="favicon.svg?v=krc1" width="44" height="44" alt=""><span>Korea RouteCheck</span></a><nav aria-label="Primary navigation"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#where-to-eat">Where to eat</a><a href="seoul-tours.html">Tours</a><a href="index.html#planning-guides">Travel guides</a></nav></header>
   <main id="main-content">
-    <section class="guide-hero"><div class="guide-hero-copy"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#tour-guides">Tour guides</a><span>/</span><span>${guide.label}</span></div><p class="eyebrow">${guide.kicker}</p><h1>${guide.title}</h1><p class="hero-lede">${guide.lede}</p><div class="hero-actions"><a class="button button-primary" href="#${isFood ? "shortlist" : guide.sections[0].id}">Compare options</a><a class="text-link" href="index.html#planner">Build an itinerary</a></div><ul class="trip-chips">${guide.chips.map(chip => `<li>${chip}</li>`).join("")}</ul><p class="editorial-note"><span>Locally reviewed · September 2026</span><a href="about.html">How recommendations are checked</a></p></div><figure class="guide-hero-media"><img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline stretching along the Han River" fetchpriority="high"><figcaption>Seoul across the Han River. Public-domain image via <a href="https://commons.wikimedia.org/wiki/File:Han_River_Seoul_skyline_Pixabay_1214950.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</figcaption></figure></section>
+    <section class="guide-hero"><div class="guide-hero-copy"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="seoul-tours.html">Tour guides</a><span>/</span><span>${guide.label}</span></div><p class="eyebrow">${guide.kicker}</p><h1>${guide.title}</h1><p class="hero-lede">${guide.lede}</p><div class="hero-actions"><a class="button button-primary" href="#${isFood ? "shortlist" : guide.sections[0].id}">Compare options</a><a class="text-link" href="index.html#planner">Build an itinerary</a></div><ul class="trip-chips">${guide.chips.map(chip => `<li>${chip}</li>`).join("")}</ul><p class="editorial-note"><span>Locally reviewed · September 2026</span><a href="about.html">How recommendations are checked</a></p></div><figure class="guide-hero-media"><img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline stretching along the Han River" fetchpriority="high"><figcaption>Seoul across the Han River. Public-domain image via <a href="https://commons.wikimedia.org/wiki/File:Han_River_Seoul_skyline_Pixabay_1214950.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.</figcaption></figure></section>
     ${isFood ? foodShortlist() : ""}
     <section class="guide-facts" aria-label="Guide summary">${guide.facts.map(([label, value]) => `<article><small>${label}</small><strong>${value}</strong></article>`).join("\n")}</section>
     <div class="guide-layout"><aside class="guide-toc" aria-label="On this page"><strong>On this page</strong>${isFood ? '<a href="#shortlist">Three tours compared</a>' : ""}${guide.sections.map(section => `<a href="#${section.id}">${section.title}</a>`).join("")}<a href="#affiliate-booking">Compare bookings</a><a href="#sources">Sources</a></aside><article class="guide-content"><div class="guide-callout"><strong>Keep in mind</strong><p>${guide.note}</p></div>${guide.sections.map(sectionMarkup).join("\n")}
@@ -291,8 +292,8 @@ function page(guide) {
     </article></div>
     <section class="guide-switcher" id="related"><div class="section-heading"><p class="eyebrow">More comparisons</p><h2>Other Seoul tour guides</h2><p>Choose the experience that fits the itinerary.</p></div><div class="guide-card-grid planning-guide-grid">${relatedMarkup(guide.slug)}</div></section>
   </main>
-  <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#tour-guides">Tour guides</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p></footer>
-  <script src="config.js?v=20260920"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260921-flow1"></script>
+  <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="seoul-tours.html">Tour guides</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p></footer>
+  <script src="config.js?v=20260921-seo1"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260921-seo1"></script>
 </body>
 </html>`;
 }

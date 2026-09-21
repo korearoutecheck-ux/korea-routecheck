@@ -2,12 +2,20 @@
 
 The live configuration uses GA4 measurement ID `G-MSXQSYV0QL`. The Google tag only loads after consent. A valid ID and a loaded tag do **not** establish that the intended GA4 property received data.
 
-## Verification status — September 20, 2026
+## Verification status — September 21, 2026
 
 - The live consent button inserted the tag with the configured measurement ID.
-- Analytics and Search Console returned gateway errors in the test browser; receipt in Realtime/DebugView and the sitemap report remain unverified.
+- The owner's September 20 Realtime screenshot confirmed page_view, view_guide, affiliate_click and analytics_consent events in the intended property. DebugView parameters and completed bookings were not verified by that screenshot.
+- Search Console's sitemap-report status remains unverified; the earlier test browser returned a gateway error.
 - The sitemap returned HTTP 200, `application/xml`, and 18 URLs. The domain-root robots.txt returned 404, which does not prohibit crawling. The project-directory robots.txt is not the host-root robots file Google consults.
 - Client-side regression tests cover denied/granted consent, persistence, withdrawal, storage failures, explicit retries, duplicate initial views, URL sanitization, and product click attribution. These tests cannot confirm delivery to Google's servers.
+
+## Discovery-page measurements
+
+- `tour_finder_filter`: selected `tour_interest`, `tour_time` and `result_count`; only fixed dropdown values are sent, not visitor-entered text.
+- `content_card_click`: captures links marked `data-guide-link` as well as guide cards.
+- `affiliate_click`: new placements `tour_finder`, `cooking_shortlist`, `cooking_more` and `market_decision` distinguish booking links on the new pages. Cooking-class links include their individual product IDs.
+- All events still go through the existing consent gate. An outbound click is not a confirmed purchase or commission.
 
 ## Confirm collection in the existing property
 
