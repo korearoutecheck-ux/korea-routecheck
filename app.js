@@ -281,6 +281,27 @@ function interestSummary(interests) {
   return interests.slice(0, 2).map(item => INTEREST_LABELS[item]).join(" and ");
 }
 
+function selectPlanOffers(data) {
+  const offers = [];
+  if (data.interests.includes("food")) offers.push(data.rainReady
+    ? { key: "cookingClasses", title: "Learn to cook a Korean meal", reason: "You selected food and rain fallbacks. Compare kitchen sessions; some classes also include an outdoor market visit.", guide: "seoul-cooking-classes.html", label: "Check cooking-class dates" }
+    : { key: "foodTours", title: "Explore Seoul through food", reason: "You selected food. Compare guided tastings and check how much food is included before choosing.", guide: "seoul-food-tours-guide.html", label: "Check food-tour dates" });
+  if (data.interests.includes("history")) offers.push({ key: "palaceTours", title: "Add context to a palace visit", reason: "You selected history. Compare a guided palace visit with exploring independently; check the opening day and admission inclusions.", guide: "gyeongbokgung-palace-tour-guide.html", label: "Check palace-tour dates" });
+  if (data.interests.includes("nightlife")) offers.push({ key: "nightTours", title: "Plan one evening out", reason: "You selected nightlife. Compare evening routes and check the finish location before booking.", guide: "seoul-night-tours-guide.html", label: "Check night-tour dates" });
+  return offers.slice(0, 2);
+}
+
+function renderPlanOffers(data) {
+  const panel = document.querySelector("#plan-experiences");
+  const container = document.querySelector("#plan-offers");
+  if (!panel || !container) return;
+  const config = window.ROUTECHECK_CONFIG?.affiliateLinks || {};
+  const offers = selectPlanOffers(data).filter(offer => config[offer.key]?.enabled && config[offer.key]?.url);
+  panel.hidden = !offers.length;
+  container.innerHTML = offers.map(offer => `<article class="plan-offer"><h4>${offer.title}</h4><p>${offer.reason}</p><div class="plan-offer-actions"><a class="button button-primary" data-affiliate="${offer.key}" data-placement="planner_match" href="${config[offer.key].url}" target="_blank" rel="sponsored noopener">${offer.label} ↗</a><a href="${offer.guide}">Compare options first →</a></div></article>`).join("");
+  applyAffiliateLinks(container);
+}
+
 let activePlan = null;
 
 function renderPlan(rawData, options = {}) {
@@ -313,6 +334,7 @@ function renderPlan(rawData, options = {}) {
     </article>
   `).join("");
 
+  renderPlanOffers(data);
   const saved = savePlan(data);
   const restoreButton = document.querySelector("#restore-plan");
   if (restoreButton) restoreButton.hidden = !saved;
@@ -383,9 +405,9 @@ async function shareResource(button, payload, eventName, parameters = {}) {
   }
 }
 
-function applyAffiliateLinks() {
+function applyAffiliateLinks(root = document) {
   const config = window.ROUTECHECK_CONFIG?.affiliateLinks || {};
-  document.querySelectorAll("[data-affiliate]").forEach(link => {
+  root.querySelectorAll("[data-affiliate]").forEach(link => {
     const key = link.dataset.affiliate;
     const item = config[key];
     if (item?.enabled && item.url) {
