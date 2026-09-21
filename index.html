@@ -7,14 +7,19 @@
   <title>Seoul Itinerary Planner | Korea RouteCheck</title>
   <meta name="description" content="Build a realistic Seoul itinerary by neighborhood, pace, weather, interests and budget. Compare practical 2-, 3-, 4-, 5- and 7-day Seoul routes.">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#10213d">
+  <meta name="theme-color" content="#132e37">
   <meta property="og:title" content="Korea RouteCheck">
   <meta property="og:description" content="Build a Seoul itinerary by neighborhood, pace, weather and budget.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://korearoutecheck-ux.github.io/korea-routecheck/">
+  <meta property="og:image" content="https://korearoutecheck-ux.github.io/korea-routecheck/assets/seoul-han-river.webp">
+  <meta property="og:image:width" content="1800">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="Seoul skyline along the Han River">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://korearoutecheck-ux.github.io/korea-routecheck/">
   <link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260920-visual1">
+  <link rel="stylesheet" href="styles.css?v=20260921-flow1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -77,6 +82,7 @@
         </div>
         <div class="hero-presets" aria-label="Start a quick itinerary"><span>How long have you got?</span><button type="button" data-preset-days="2">2 days →</button><button type="button" data-preset-days="3">3 days →</button><button type="button" data-preset-days="5">5 days →</button></div>
         <p class="microcopy">Free itineraries · No sign-up</p>
+        <button type="button" id="restore-plan" class="saved-plan-link" hidden>Continue my saved itinerary →</button>
       </div>
       <div class="hero-visual">
         <img src="assets/seoul-han-river.webp" width="1800" height="1000" alt="Seoul skyline along the Han River" fetchpriority="high">
@@ -88,15 +94,35 @@
       <div class="section-heading">
         <p class="eyebrow">Bookable experiences</p>
         <h2>Choose the right Seoul tour.</h2>
-        <p>Compare formats, timing and inclusions before you book.</p>
+        <p>Read a quick comparison or go straight to available tours on Viator.</p>
       </div>
       <div class="guide-card-grid planning-guide-grid">
-        <a class="guide-card tour-guide-card" href="seoul-food-tours-guide.html"><span>Food tours</span><h3>Markets or cooking?</h3><p>Choose by neighborhood, group size and what is included.</p><strong>Compare food tours →</strong></a>
-        <a class="guide-card tour-guide-card" href="dmz-tours-from-seoul-guide.html"><span>DMZ tours</span><h3>Check the route first</h3><p>Compare stops, timing, access rules and physical demands.</p><strong>Compare DMZ tours →</strong></a>
-        <a class="guide-card tour-guide-card" href="seoul-night-tours-guide.html"><span>Night tours</span><h3>Plan a better evening</h3><p>Compare food walks, viewpoints, cruises and private tours.</p><strong>Compare night tours →</strong></a>
-        <a class="guide-card tour-guide-card" href="gyeongbokgung-palace-tour-guide.html"><span>Palace tours</span><h3>Guide or self-guided?</h3><p>Decide how much historical context and structure you want.</p><strong>Compare palace tours →</strong></a>
+        <article class="tour-choice">
+          <svg class="tour-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 25h34c-1 10-7 15-17 15S8 35 7 25Z M17 42h14 M17 19c-5-6 5-6 0-12 M25 19c-5-6 5-6 0-12 M33 19c-5-6 5-6 0-12"/></svg>
+          <h3><a data-guide-link href="seoul-food-tours-guide.html">Taste your way through Seoul</a></h3>
+          <p>Market walks, food tastings and cooking classes.</p>
+          <div class="tour-choice-actions"><a class="button tour-book" data-affiliate="foodTours" data-placement="home_tours" href="https://www.viator.com/Seoul-tours/Food-Tours/d973-g6-c80?pid=P00317839&amp;mcid=42383&amp;medium=link" target="_blank" rel="sponsored noopener">Find food tours ↗</a><a class="tour-compare" data-guide-link href="seoul-food-tours-guide.html">Compare food tours →</a></div>
+        </article>
+        <article class="tour-choice">
+          <svg class="tour-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 39h38 M11 39V15h18v24 M8 15l12-7 12 7 M16 20h8v6h-8z M29 32l8-7 6 7 M36 39v-8 M20 8V3h10l-3 3 3 3H20"/></svg>
+          <h3><a data-guide-link href="dmz-tours-from-seoul-guide.html">Make a day for the DMZ</a></h3>
+          <p>Compare routes, meeting points and access requirements.</p>
+          <div class="tour-choice-actions"><a class="button tour-book" data-affiliate="dmzTours" data-placement="home_tours" href="https://www.viator.com/Seoul-attractions/DMZ/d973-a8969?pid=P00317839&amp;mcid=42383&amp;medium=link" target="_blank" rel="sponsored noopener">Find DMZ tours ↗</a><a class="tour-compare" data-guide-link href="dmz-tours-from-seoul-guide.html">Read the DMZ guide →</a></div>
+        </article>
+        <article class="tour-choice">
+          <svg class="tour-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M30 5a14 14 0 1 0 13 18A14 14 0 0 1 30 5Z M6 43V31h8v12 M19 43V26h8v17 M32 43V34h8v9 M3 43h42"/></svg>
+          <h3><a data-guide-link href="seoul-night-tours-guide.html">See Seoul after dark</a></h3>
+          <p>Evening food walks, city views and river cruises.</p>
+          <div class="tour-choice-actions"><a class="button tour-book" data-affiliate="nightTours" data-placement="home_tours" href="https://www.viator.com/Seoul-tours/Night-Tours/d973-g12-c96?pid=P00317839&amp;mcid=42383&amp;medium=link" target="_blank" rel="sponsored noopener">Find night tours ↗</a><a class="tour-compare" data-guide-link href="seoul-night-tours-guide.html">Compare night tours →</a></div>
+        </article>
+        <article class="tour-choice">
+          <svg class="tour-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20c9 0 14-4 20-12 6 8 11 12 20 12H4Z M10 20v18 M38 20v18 M17 20v18 M31 20v18 M4 38h40 M2 43h44 M24 8V3 M20 38V27h8v11"/></svg>
+          <h3><a data-guide-link href="gyeongbokgung-palace-tour-guide.html">Explore the palace district</a></h3>
+          <p>Guided history walks and independent palace visits.</p>
+          <div class="tour-choice-actions"><a class="button tour-book" data-affiliate="palaceTours" data-placement="home_tours" href="https://www.viator.com/Seoul-attractions/Gyeongbokgung-Palace/d973-a5004?pid=P00317839&amp;mcid=42383&amp;medium=link" target="_blank" rel="sponsored noopener">Find palace tours ↗</a><a class="tour-compare" data-guide-link href="gyeongbokgung-palace-tour-guide.html">Read the palace guide →</a></div>
+        </article>
       </div>
-      <p class="field-note">These guides explain what to compare. Affiliate links are labeled, and bookings may support the site at no extra cost.</p>
+      <p class="field-note">Booking links open Viator in a new tab. We may earn a commission if you book, at no extra cost to you. <a href="disclosure.html">How affiliate links work</a>.</p>
     </section>
 
     <section class="trust-strip" aria-label="Product benefits">
@@ -115,7 +141,6 @@
           <button type="button" data-preset-days="2">2-day essentials</button>
           <button type="button" data-preset-days="3">3-day first trip</button>
           <button type="button" data-preset-days="5">5-day deeper trip</button>
-          <button type="button" id="restore-plan" hidden>Open my saved plan</button>
         </div>
       </div>
 
@@ -188,7 +213,7 @@
         <div class="results-toolbar">
           <div>
             <p class="eyebrow">Your itinerary</p>
-            <h2 id="result-title">Your Seoul plan</h2>
+            <h2 id="result-title" tabindex="-1">Your Seoul plan</h2>
           </div>
           <div class="toolbar-actions">
             <button id="copy-plan" class="button button-secondary" type="button">Copy plan</button>
@@ -337,6 +362,6 @@
 
   <script src="config.js?v=20260920"></script>
   <script src="analytics.js?v=20260920"></script>
-  <script src="app.js?v=20260920"></script>
+  <script src="app.js?v=20260921-flow1"></script>
 </body>
 </html>

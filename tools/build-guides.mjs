@@ -300,14 +300,19 @@ function page(guide) {
   <title>${guide.seoTitle} | Korea RouteCheck</title>
   <meta name="description" content="${guide.description}">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#10213d">
+  <meta name="theme-color" content="#132e37">
   <meta property="og:title" content="${guide.title}">
   <meta property="og:description" content="${guide.description}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="${canonical}">
+  <meta property="og:image" content="https://korearoutecheck-ux.github.io/korea-routecheck/assets/seoul-han-river.webp">
+  <meta property="og:image:width" content="1800">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="Seoul skyline along the Han River">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260920-visual1">
+  <link rel="stylesheet" href="styles.css?v=20260921-flow1">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page" data-guide="${guide.slug}">
@@ -388,7 +393,7 @@ function page(guide) {
   </footer>
   <script src="config.js?v=20260920"></script>
   <script src="analytics.js?v=20260920"></script>
-  <script src="app.js?v=20260920"></script>
+  <script src="app.js?v=20260921-flow1"></script>
 </body>
 </html>`;
 }

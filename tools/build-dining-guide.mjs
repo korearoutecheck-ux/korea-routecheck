@@ -172,14 +172,19 @@ const html = `<!doctype html>
   <title>Where to Eat in Seoul by Budget: 9 Popular Restaurants | Korea RouteCheck</title>
   <meta name="description" content="Nine popular Seoul restaurants grouped by budget and neighborhood, with Naver Maps links, current menu ranges and nearby itinerary ideas.">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#10213d">
+  <meta name="theme-color" content="#132e37">
   <meta property="og:title" content="Where to eat in Seoul by budget">
   <meta property="og:description" content="Nine popular restaurant picks with current menu ranges and Naver Maps links.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="${canonical}">
+  <meta property="og:image" content="https://korearoutecheck-ux.github.io/korea-routecheck/assets/seoul-han-river.webp">
+  <meta property="og:image:width" content="1800">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="Seoul skyline along the Han River">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260920-visual1">
+  <link rel="stylesheet" href="styles.css?v=20260921-flow1">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page dining-guide" data-guide="where-to-eat-seoul-by-budget">
@@ -199,7 +204,7 @@ const html = `<!doctype html>
     </div>
   </main>
   <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="index.html#guides">Itineraries</a><a href="index.html#tour-guides">Tour guides</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p></footer>
-  <script src="config.js?v=20260920"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260920"></script>
+  <script src="config.js?v=20260920"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260921-flow1"></script>
 </body>
 </html>`;
 

@@ -238,7 +238,10 @@ function applyPlanToForm(data) {
 }
 
 function savePlan(data) {
-  try { window.localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(data)); } catch (_) {}
+  try {
+    window.localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(data));
+    return true;
+  } catch (_) { return false; }
 }
 
 function readSavedPlan() {
@@ -310,11 +313,15 @@ function renderPlan(rawData, options = {}) {
     </article>
   `).join("");
 
-  savePlan(data);
+  const saved = savePlan(data);
+  const restoreButton = document.querySelector("#restore-plan");
+  if (restoreButton) restoreButton.hidden = !saved;
   const shareUrl = planUrl(data);
   if (options.updateUrl !== false) window.history.replaceState({}, "", shareUrl);
   const status = document.querySelector("#plan-status");
-  if (status) status.textContent = options.restored === "shared"
+  if (status) status.textContent = !saved
+    ? "Your browser could not save this itinerary. Copy or share the link to keep it."
+    : options.restored === "shared"
     ? "Shared itinerary opened. Changes are saved on this device."
     : options.restored === "saved"
       ? "Saved itinerary restored. Share the link to open it elsewhere."
@@ -327,7 +334,10 @@ function renderPlan(rawData, options = {}) {
     rain_ready: data.rainReady ? "yes" : "no",
     itinerary_source: options.restored || "form"
   });
-  if (options.scroll !== false) results.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (options.scroll !== false) {
+    document.querySelector("#result-title").focus({ preventScroll: true });
+    results.scrollIntoView({ behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  }
 }
 
 async function copyText(text) {
@@ -448,11 +458,11 @@ if (form) {
   });
 
   const restoreButton = document.querySelector("#restore-plan");
-  const savedPlan = readSavedPlan();
-  if (savedPlan) {
-    restoreButton.hidden = false;
-    restoreButton.addEventListener("click", () => renderPlan(savedPlan, { restored: "saved" }));
-  }
+  restoreButton.hidden = !readSavedPlan();
+  restoreButton.addEventListener("click", () => {
+    const savedPlan = readSavedPlan();
+    if (savedPlan) renderPlan(savedPlan, { restored: "saved" });
+  });
 
   const sharedPlan = planFromUrl();
   if (sharedPlan) renderPlan(sharedPlan, { restored: "shared", updateUrl: false, scroll: false });
@@ -480,11 +490,11 @@ document.addEventListener("click", event => {
 });
 
 document.addEventListener("click", event => {
-  const contentLink = event.target.closest(".guide-card");
+  const contentLink = event.target.closest("a.guide-card, a[data-guide-link]");
   if (!contentLink) return;
   window.routecheckTrack?.("content_card_click", {
     destination_path: contentLink.getAttribute("href"),
-    card_label: contentLink.querySelector("h3")?.textContent || "guide",
+    card_label: contentLink.querySelector("h3")?.textContent || contentLink.textContent.trim().slice(0, 80),
     page_path: window.location.pathname
   });
 });
