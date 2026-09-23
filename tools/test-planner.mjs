@@ -81,3 +81,5 @@ fresh.context.renderPlanOffers({...plan, interests: ['nature']});
 assert.equal(fresh.nodes['plan-experiences'].hidden, true);
 assert.equal(offerContainer.innerHTML, '', 'Changing choices removes stale offers');
 console.log('Offer rendering passed: enabled destinations, attribution, and stale offer removal.');
+assert.equal(fresh.context.normalizePlanData({...plan, travelers: 2.7}).travelers, 3, 'Shared links cannot create fractional travelers');
+assert.equal(fresh.context.normalizePlanData({...plan, days: 3.7}).days, 4, 'Trip length and generated day count stay consistent');

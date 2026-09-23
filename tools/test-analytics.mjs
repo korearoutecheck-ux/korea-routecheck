@@ -85,7 +85,8 @@ assert.equal(otherTab.reloads, 1);
 assert.equal(otherTab.window["ga-disable-G-MSXQSYV0QL"], true);
 console.log("Analytics checks passed: consent, URL privacy, one initial view, retry, withdrawal, storage, and cross-tab changes.");
 
-const affiliateLink = { dataset: { affiliate: "foodMarket", placement: "food_shortlist" }, textContent: "Check dates & price", events: {}, addEventListener(n, fn) { this.events[n] = fn; } };
+let affiliateBindings = 0;
+const affiliateLink = { dataset: { affiliate: "foodMarket", placement: "food_shortlist" }, textContent: "Check dates & price", events: {}, addEventListener(n, fn) { affiliateBindings++; this.events[n] = fn; } };
 const appContext = { window: { location: new URL("https://korearoutecheck-ux.github.io/korea-routecheck/seoul-food-tours-guide.html"), routecheckTrack: (...args) => { appContext.hit = args; } },
   document: { body: { dataset: {} }, querySelector() { return null; }, querySelectorAll(s) { return s === "[data-affiliate]" ? [affiliateLink] : []; }, addEventListener() {} }, URL, Date, Set };
 runInNewContext(readFileSync(new URL("config.js", root), "utf8"), appContext);
@@ -96,4 +97,7 @@ assert.equal(appContext.hit[1].affiliate_product, "7812P100");
 assert.equal(appContext.hit[1].affiliate_placement, "food_shortlist");
 assert.equal(new URL(affiliateLink.href).searchParams.get("pid"), "P00317839");
 assert.equal(affiliateLink.rel, "sponsored noopener");
+appContext.applyAffiliateLinks();
+appContext.applyAffiliateLinks();
+assert.equal(affiliateBindings, 1, "Shared-plan initialization must not bind duplicate click events");
 console.log("Affiliate checks passed: direct destination, existing account ID, product attribution, and sponsored link attributes.");

@@ -27,7 +27,7 @@ button, input, select { font: inherit; }
 
 .skip-link { position: fixed; z-index: 2000; top: 10px; left: 10px; padding: 10px 14px; border-radius: 10px; color: white; background: var(--ink); transform: translateY(-160%); transition: transform .15s ease; }
 .skip-link:focus { transform: translateY(0); }
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #f3a38f; outline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--paper); }
 
 .site-header {
   position: sticky;

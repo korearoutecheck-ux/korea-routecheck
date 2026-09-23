@@ -22,7 +22,7 @@ function page({slug, title, description, lede, actions, body, type = "Article", 
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} | Korea RouteCheck</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#132e37">
-<link rel="canonical" href="${url}"><link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml"><link rel="stylesheet" href="styles.css?v=20260921-seo1">
+<link rel="canonical" href="${url}"><link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml"><link rel="stylesheet" href="styles.css?v=20260923-opt1">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="${type === "Article" ? "article" : "website"}"><meta property="og:url" content="${url}"><meta property="og:image" content="${base}assets/seoul-han-river.webp"><meta property="og:image:alt" content="Seoul skyline along the Han River"><meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script></head>
 <body class="guide-page discovery-page" data-guide="${slug}"><a class="skip-link" href="#main-content">Skip to content</a>
@@ -30,7 +30,7 @@ function page({slug, title, description, lede, actions, body, type = "Article", 
 <main id="main-content"><section class="discovery-hero"><div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="seoul-tours.html">Seoul tours</a></div><p class="eyebrow">Practical choices for your Seoul trip</p><h1>${title}</h1><p class="hero-lede">${lede}</p><div class="hero-actions">${actions}</div><p class="editorial-note">By Korea RouteCheck · Published September 21, 2026 · <a href="about.html">Our editorial process</a></p></section>
 ${body}${related(relatedItems)}</main>
 <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="seoul-tours.html">Tour finder</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current details before booking.</p></footer>
-<script src="config.js?v=20260921-seo1"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260921-seo1"></script></body></html>`;
+<script src="config.js?v=20260921-seo1"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260923-opt1"></script></body></html>`;
 }
 
 const classes = [

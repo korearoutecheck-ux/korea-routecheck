@@ -206,8 +206,8 @@ function readFormData() {
 
 function normalizePlanData(candidate) {
   if (!candidate || typeof candidate !== "object") return null;
-  const days = Math.min(7, Math.max(2, Number(candidate.days) || 3));
-  const travelers = Math.min(8, Math.max(1, Number(candidate.travelers) || 2));
+  const days = Math.min(7, Math.max(2, Math.round(Number(candidate.days) || 3)));
+  const travelers = Math.min(8, Math.max(1, Math.round(Number(candidate.travelers) || 2)));
   const lodging = Math.min(1500, Math.max(0, Number(candidate.lodging) || 0));
   const pace = VALID_PACES.has(candidate.pace) ? candidate.pace : "balanced";
   const spend = VALID_SPEND.has(candidate.spend) ? candidate.spend : "comfortable";
@@ -415,6 +415,8 @@ function applyAffiliateLinks(root = document) {
       link.target = "_blank";
       link.rel = "sponsored noopener";
       link.dataset.disabled = "false";
+      if (link.dataset.affiliateBound === "true") return;
+      link.dataset.affiliateBound = "true";
       link.addEventListener("click", () => {
         window.routecheckTrack?.("affiliate_click", {
           affiliate_partner: key,
