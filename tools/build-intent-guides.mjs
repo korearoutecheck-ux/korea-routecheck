@@ -283,7 +283,7 @@ function page(guide) {
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260923-opt1">
+  <link rel="stylesheet" href="styles.css?v=20260924-opt2">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page" data-guide="${guide.slug}">
@@ -300,7 +300,7 @@ function page(guide) {
     <section class="guide-switcher" id="related"><div class="section-heading"><p class="eyebrow">More help</p><h2>Related Seoul guides</h2><p>Choose the guide that matches your next question.</p></div><div class="guide-card-grid planning-guide-grid">${relatedMarkup(guide.slug)}</div></section>
   </main>
   <footer><div><strong>Korea RouteCheck</strong><p>Practical Seoul itineraries and travel guides.</p></div><div class="footer-links"><a href="index.html#planner">Planner</a><a href="where-to-eat-seoul-by-budget.html">Where to eat</a><a href="seoul-tours.html">Tour guides</a><a href="about.html">About</a><a href="disclosure.html">Affiliate disclosure</a><a href="privacy.html">Privacy</a></div><p class="copyright">© <span id="year"></span> Korea RouteCheck. Verify current travel information before booking.</p></footer>
-  <script src="config.js?v=20260921-seo1"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260923-opt1"></script>
+  <script src="config.js?v=20260921-seo1"></script><script src="analytics.js?v=20260920"></script><script src="app.js?v=20260924-opt2"></script>
 </body>
 </html>`;
 }

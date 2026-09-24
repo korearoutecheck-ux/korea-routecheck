@@ -532,6 +532,13 @@ if (tourFinder) {
   const cards = [...document.querySelectorAll("[data-tour-interest]")];
   const count = document.querySelector("#tour-result-count");
   const empty = document.querySelector("#tour-no-results");
+  const filterUrl = new URL(window.location.href);
+  const validInterests = ["all", "food", "history", "evening"];
+  const validTimes = ["all", "half", "day", "evening"];
+  const initialInterest = filterUrl.searchParams.get("interest");
+  const initialTime = filterUrl.searchParams.get("time");
+  if (validInterests.includes(initialInterest)) interest.value = initialInterest;
+  if (validTimes.includes(initialTime)) time.value = initialTime;
   function filterTours(track = false) {
     let matches = 0;
     cards.forEach(card => {
@@ -542,6 +549,14 @@ if (tourFinder) {
     });
     count.textContent = `${matches} ${matches === 1 ? "option matches" : "options match"} your choices.`;
     empty.hidden = matches > 0;
+    if (track) {
+      const url = new URL(window.location.href);
+      for (const [key, value] of [["interest", interest.value], ["time", time.value]]) {
+        if (value === "all") url.searchParams.delete(key);
+        else url.searchParams.set(key, value);
+      }
+      window.history.replaceState({}, "", url);
+    }
     if (track) window.routecheckTrack?.("tour_finder_filter", {
       tour_interest: interest.value,
       tour_time: time.value,
@@ -561,7 +576,7 @@ if (tourFinder) {
   filterTours();
 }
 
-const guideActions = document.querySelector(".guide-hero .hero-actions");
+const guideActions = document.querySelector(".guide-hero .hero-actions, .discovery-hero .hero-actions");
 if (document.body.dataset.guide && guideActions) {
   const shareGuide = document.createElement("button");
   shareGuide.type = "button";
@@ -569,9 +584,16 @@ if (document.body.dataset.guide && guideActions) {
   shareGuide.textContent = "Share guide";
   guideActions.appendChild(shareGuide);
   shareGuide.addEventListener("click", () => {
-    const url = document.querySelector('link[rel="canonical"]')?.href;
+    const canonical = document.querySelector('link[rel="canonical"]')?.href;
+    const url = canonical && new URL(canonical);
     if (!url) return;
-    shareResource(shareGuide, { title: document.title, url }, "share_guide", {
+    if (tourFinder) {
+      const interest = document.querySelector("#tour-interest").value;
+      const time = document.querySelector("#tour-time").value;
+      if (interest !== "all") url.searchParams.set("interest", interest);
+      if (time !== "all") url.searchParams.set("time", time);
+    }
+    shareResource(shareGuide, { title: document.title, url: url.href }, "share_guide", {
       guide_type: document.body.dataset.guide,
       page_path: window.location.pathname
     });

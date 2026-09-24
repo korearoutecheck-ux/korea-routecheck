@@ -312,7 +312,7 @@ function page(guide) {
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="favicon.svg?v=krc1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260923-opt1">
+  <link rel="stylesheet" href="styles.css?v=20260924-opt2">
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
 <body class="guide-page" data-guide="${guide.slug}">
@@ -393,7 +393,7 @@ function page(guide) {
   </footer>
   <script src="config.js?v=20260921-seo1"></script>
   <script src="analytics.js?v=20260920"></script>
-  <script src="app.js?v=20260923-opt1"></script>
+  <script src="app.js?v=20260924-opt2"></script>
 </body>
 </html>`;
 }

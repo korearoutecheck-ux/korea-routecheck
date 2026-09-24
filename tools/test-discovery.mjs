@@ -13,7 +13,7 @@ const count = {};
 const empty = {};
 const nodes = { "#tour-finder": form, "#tour-interest": interest, "#tour-time": time, "#tour-result-count": count, "#tour-no-results": empty };
 const hits = [];
-const ctx = { window: { location: new URL("https://korearoutecheck-ux.github.io/korea-routecheck/seoul-tours.html"), routecheckTrack: (...args) => hits.push(args) }, document: { body: { dataset: {} }, querySelector: selector => nodes[selector] || null, querySelectorAll: selector => selector === "[data-tour-interest]" ? cards : [], addEventListener() {} }, URL, Date, Set };
+const ctx = { window: { location: new URL("https://korearoutecheck-ux.github.io/korea-routecheck/seoul-tours.html"), history: { replaceState(_state, _title, url) { ctx.window.location = new URL(url); } }, routecheckTrack: (...args) => hits.push(args) }, document: { body: { dataset: {} }, querySelector: selector => nodes[selector] || null, querySelectorAll: selector => selector === "[data-tour-interest]" ? cards : [], addEventListener() {} }, URL, Date, Set };
 runInNewContext(readFileSync(new URL("app.js", root), "utf8"), ctx);
 assert.equal(form.hidden, false);
 assert.equal(cards.filter(card => !card.hidden).length, 5);
@@ -22,6 +22,7 @@ interest.value = "food";
 form.events.change();
 assert.equal(cards.filter(card => !card.hidden).length, 2);
 assert.match(count.textContent, /^2 options/);
+assert.equal(ctx.window.location.searchParams.get("interest"), "food");
 assert.equal(hits.at(-1)[0], "tour_finder_filter");
 time.value = "day";
 form.events.change();
@@ -30,6 +31,7 @@ assert.equal(empty.hidden, false);
 form.events.reset({ preventDefault() {} });
 assert.equal(cards.filter(card => !card.hidden).length, 5);
 assert.equal(empty.hidden, true);
+assert.equal(ctx.window.location.search, "", "Reset clears filter parameters");
 interest.value = "history";
 time.value = "day";
 form.events.change();
@@ -49,3 +51,13 @@ for (const file of ["seoul-tours.html", "seoul-cooking-classes.html", "gwangjang
   }
 }
 console.log("Discovery checks passed: static categories, filters, empty state, reset, consent-gated event hook and affiliate destinations.");
+
+interest.value = "all"; time.value = "all"; hits.length = 0;
+runInNewContext(readFileSync(new URL("app.js", root), "utf8"), {...ctx});
+assert.equal(interest.value, "history"); assert.equal(time.value, "day");
+assert.equal(cards.filter(card => !card.hidden).length, 1);
+assert.equal(hits.length, 0, "Reopening filters is not a user interaction");
+ctx.window.location = new URL("https://korearoutecheck-ux.github.io/korea-routecheck/seoul-tours.html?interest=invalid&time=invalid");
+interest.value = "all"; time.value = "all";
+runInNewContext(readFileSync(new URL("app.js", root), "utf8"), {...ctx});
+assert.equal(cards.filter(card => !card.hidden).length, 5, "Invalid filters fall back to all options");
